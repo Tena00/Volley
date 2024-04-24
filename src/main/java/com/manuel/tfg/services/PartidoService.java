@@ -1,0 +1,15 @@
+package com.manuel.tfg.services;
+
+import com.manuel.tfg.daos.model.EstadisticasJugador;
+import com.manuel.tfg.daos.model.Partido;
+
+import java.util.List;
+
+public interface PartidoService {
+
+    public List<Partido> todosPartidos();
+
+    public void iniciarPartido(Integer idEquipo);
+
+    public List<EstadisticasJugador> estadisticasPartido(Integer idPartido);
+}
