@@ -11,6 +11,10 @@ public class Partido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Partido")
     private Integer idPartido;
+
+    @Column(name = "Resultado_del_partido")
+    private String resultadoPartido;
+
     @ManyToOne
     @JoinColumn(name = "Equipo_ID")
     private Equipo equipo;
@@ -18,9 +22,10 @@ public class Partido {
     public Partido() {
     }
 
-    public Partido(Integer idPartido, Equipo equipo) {
+    public Partido(Integer idPartido, Equipo equipo, String resultadoPartido) {
         this.idPartido = idPartido;
         this.equipo = equipo;
+        this.resultadoPartido = resultadoPartido;
     }
 
     public Integer getIdPartido() {
@@ -37,5 +42,13 @@ public class Partido {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+
+    public String getResultadoPartido() {
+        return resultadoPartido;
+    }
+
+    public void setResultadoPartido(String resultadoPartido) {
+        this.resultadoPartido = resultadoPartido;
     }
 }
