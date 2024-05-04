@@ -2,6 +2,8 @@ package com.manuel.tfg.daos.model;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 
 @Entity
 @Table(name = "Estadisticas_Jugador_Partido")
