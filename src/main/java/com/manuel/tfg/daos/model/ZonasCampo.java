@@ -10,6 +10,8 @@ import lombok.Data;
 public class ZonasCampo {
 
     @Id
+    @Column(name = "ID_Zona_Campo")
+    private Integer idZonaCampo;
     @Column(name = "Nombre_de_la_zona")
     private String nombreZona;
     @Column(name = "Descripcion_de_la_zona")
@@ -18,7 +20,8 @@ public class ZonasCampo {
     public ZonasCampo() {
     }
 
-    public ZonasCampo(String nombreZona, String tipo) {
+    public ZonasCampo(Integer idZonaCampo, String nombreZona, String tipo) {
+        this.idZonaCampo = idZonaCampo;
         this.nombreZona = nombreZona;
         this.tipo = tipo;
     }
