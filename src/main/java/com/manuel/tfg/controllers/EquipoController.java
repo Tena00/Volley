@@ -1,5 +1,6 @@
 package com.manuel.tfg.controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.manuel.tfg.daos.model.Equipo;
 import com.manuel.tfg.daos.model.Jugador;
 import com.manuel.tfg.exception.EquipoExistenteExcepcion;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("/equipos")
 public class EquipoController {
@@ -23,7 +25,7 @@ public class EquipoController {
         this.jugadoresService = jugadoresService;
     }
 
-    @GetMapping("")
+    @GetMapping("todos")
     public List<Equipo> todosEquipos(){
         return equipoService.todosEquipos();
     }

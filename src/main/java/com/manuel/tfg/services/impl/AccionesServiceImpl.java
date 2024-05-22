@@ -79,6 +79,7 @@ public class AccionesServiceImpl implements AccionesService {
                 ZonasCampo zonasCampo = zonasCampoOp.get();
                 estadisticasZona.setPartido(partido);
                 estadisticasZona.setIdZona(zonasCampo);
+                accionesPartido.setEstadisticasZona(estadisticasZona);
                 if ((resultadoAccion.equals("Rojo"))){
                     remateFallado(estadisticasJugador,estadisticasZona);
                 }else if (resultadoAccion.equals("Amarillo")){
@@ -88,6 +89,7 @@ public class AccionesServiceImpl implements AccionesService {
                 }
 
             }else {
+                accionesPartido.setEstadisticasZona(estadisticasZona);
                 if ((resultadoAccion.equals("Rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona);
                 } else if (resultadoAccion.equals("Amarillo")) {

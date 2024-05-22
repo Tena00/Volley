@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Equipo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="container">
+    <div id="addTeamView">
+        <h1>Datos Equipo</h1>
+        <div class="form-group">
+            <label for="teamName">Nombre del Equipo</label>
+            <input type="text" id="teamName">
+        </div>
+        <div class="center-button">
+            <button onclick="addTeam()">Añadir equipo</button>
+            <button onclick="viewTeams()">Mostrar equipos</button>
+        </div>
+        <div class="bottom-left-button">
+            <button onclick="navigateTo('index.html')">⟵</button>
+        </div>
+    </div>
+
+    <div id="teamListView" style="display: none;">
+        <h1>Lista de equipos</h1>
+        <div id="teamsList" class="teams-list"></div>
+        <div class="bottom-left-button">
+            <button onclick="showAddTeamView()">⟵</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+
