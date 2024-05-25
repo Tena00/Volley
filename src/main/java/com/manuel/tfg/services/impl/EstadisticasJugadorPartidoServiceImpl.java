@@ -1,6 +1,8 @@
 package com.manuel.tfg.services.impl;
 import com.manuel.tfg.daos.RepositorioEstadisticas;
+import com.manuel.tfg.daos.model.Acciones;
 import com.manuel.tfg.daos.model.EstadisticasJugador;
+import com.manuel.tfg.services.AccionesService;
 import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,8 +14,11 @@ public class EstadisticasJugadorPartidoServiceImpl implements EstadisticasJugado
 
     private RepositorioEstadisticas estadisticasRepository;
 
-    public EstadisticasJugadorPartidoServiceImpl(RepositorioEstadisticas estadisticasRepository) {
+    private AccionesService accionesService;
+
+    public EstadisticasJugadorPartidoServiceImpl(RepositorioEstadisticas estadisticasRepository, AccionesService accionesService) {
         this.estadisticasRepository = estadisticasRepository;
+        this.accionesService = accionesService;
     }
 
     public List<EstadisticasJugador> todasEstadisticas(){
@@ -40,6 +45,10 @@ public class EstadisticasJugadorPartidoServiceImpl implements EstadisticasJugado
     }
 
     public void eliminarEstadisticas(Integer id) {
+        List<Acciones> accionesList = estadisticasRepository.findByIdAccionesEstadisticas(id);
+        for(Acciones acciones : accionesList){
+            accionesService.eliminarAccion(acciones.getIdAccion());
+        }
         estadisticasRepository.deleteById(id);
     }
 }

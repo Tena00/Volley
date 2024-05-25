@@ -1,11 +1,14 @@
 package com.manuel.tfg.services.impl;
 
 import com.manuel.tfg.daos.RepositorioEquipos;
+import com.manuel.tfg.daos.RepositorioEstadisticas;
 import com.manuel.tfg.daos.RepositorioJugadores;
 import com.manuel.tfg.daos.model.Equipo;
+import com.manuel.tfg.daos.model.EstadisticasJugador;
 import com.manuel.tfg.daos.model.Jugador;
 import com.manuel.tfg.exception.EquipoExistenteExcepcion;
 import com.manuel.tfg.exception.JugadorExistenteException;
+import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
 import com.manuel.tfg.services.JugadoresService;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +20,15 @@ public class JugadorServiceImpl implements JugadoresService {
 
     private RepositorioJugadores repositorioJugadores;
     private RepositorioEquipos repositorioEquipos;
+    private RepositorioEstadisticas repositorioEstadisticas;
 
-    public JugadorServiceImpl(RepositorioJugadores repositorioJugadores, RepositorioEquipos repositorioEquipos) {
+    private EstadisticasJugadorPartidoService estadisticasJugadorPartidoService;
+
+    public JugadorServiceImpl(RepositorioJugadores repositorioJugadores, RepositorioEquipos repositorioEquipos, RepositorioEstadisticas repositorioEstadisticas, EstadisticasJugadorPartidoService estadisticasJugadorPartidoService) {
         this.repositorioJugadores = repositorioJugadores;
         this.repositorioEquipos = repositorioEquipos;
+        this.repositorioEstadisticas = repositorioEstadisticas;
+        this.estadisticasJugadorPartidoService = estadisticasJugadorPartidoService;
     }
 
     @Override
@@ -45,6 +53,11 @@ public class JugadorServiceImpl implements JugadoresService {
     @Override
     public void eliminarJugador(Integer id) throws JugadorExistenteException {
         if (repositorioJugadores.existsById(id)) {
+            List<EstadisticasJugador> estadisticasJugadorList = repositorioEstadisticas.findByIdJugador(id);
+            for (EstadisticasJugador estadisticasJugador : estadisticasJugadorList) {
+
+                estadisticasJugadorPartidoService.eliminarEstadisticas(estadisticasJugador.getIdEstadisticasJugadorPartido());
+            }
             repositorioJugadores.deleteById(id);
         } else {
             throw new JugadorExistenteException("El jugador con id " + id + " no existe.");

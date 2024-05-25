@@ -10,6 +10,7 @@ import com.manuel.tfg.exception.EquipoExistenteExcepcion;
 import com.manuel.tfg.exception.JugadorExistenteException;
 import com.manuel.tfg.services.EquipoService;
 import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
+import com.manuel.tfg.services.JugadoresService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,11 +23,13 @@ public class EquipoServiceImpl implements EquipoService {
     private RepositorioJugadores repositorioJugadores;
 
     private EstadisticasJugadorPartidoService estadisticasJugadorPartidoService;
+    private JugadoresService jugadoresService;
 
-    public EquipoServiceImpl(RepositorioEquipos repositorioEquipos, RepositorioJugadores repositorioJugadores, RepositorioPartidos repositorioPartidos ) {
+    public EquipoServiceImpl(RepositorioEquipos repositorioEquipos, RepositorioJugadores repositorioJugadores, RepositorioPartidos repositorioPartidos,JugadoresService jugadoresService ) {
         this.repositorioEquipos = repositorioEquipos;
         this.repositorioJugadores = repositorioJugadores;
         this.repositorioPartidos = repositorioPartidos;
+        this.jugadoresService = jugadoresService;
     }
 
 
@@ -49,15 +52,11 @@ public class EquipoServiceImpl implements EquipoService {
     }
 
     @Override
-    public void eliminarEquipo(Integer id) throws EquipoExistenteExcepcion {
+    public void eliminarEquipo(Integer id) throws EquipoExistenteExcepcion, JugadorExistenteException {
         if (repositorioEquipos.existsById(id)) {
-            List<Partido> partidos = repositorioPartidos.findByIdPartidoIdEquipo(id);
             List<Jugador> jugadores = repositorioEquipos.findByIdEquipoIdJugador(id);
-            for (Partido partido : partidos) {
-                repositorioPartidos.delete(partido);
-            }
             for (Jugador jugador : jugadores) {
-                repositorioJugadores.delete(jugador);
+                jugadoresService.eliminarJugador(jugador.getIdJugador());
             }
 
             repositorioEquipos.deleteById(id);

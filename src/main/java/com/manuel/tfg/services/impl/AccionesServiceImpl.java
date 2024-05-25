@@ -106,6 +106,10 @@ public class AccionesServiceImpl implements AccionesService {
 
     }
 
+    public void eliminarAccion(Integer id){
+        repositorioAcciones.deleteById(id);
+    }
+
     private void inicializarEstadisticas(EstadisticasJugador estadisticasJugador){
         estadisticasJugador.setRematesTotal(0);
         estadisticasJugador.setRematesBloqueados(0);
