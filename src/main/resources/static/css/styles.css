@@ -1,33 +1,99 @@
+/* START Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+/* END Fonts */
+
+/* General */
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #058fdb;
 }
 
-.container {
-    margin-top: 50px;
+/* Home */
+.sect {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cont {
+  width: 900px;
+  padding: 4rem;
+  background-color: white;
+  border-radius: 32px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-T
-.logo img {
-    width: 200px;
+T .logo img {
+  width: 200px;
 }
 
-.buttons {
-    margin-top: 20px;
+.cont_btn {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 2fr;
+  justify-content: center;
+  gap: 0 1rem;
+}
+
+.cont_btn__1,
+.cont_btn__2,
+.cont_btn__3,
+.cont_btn__4 {
+  background-color: #0d0f28;
+  border-radius: 64px;
+  background-size: 23%;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+  background-position-y: center;
+  font-size: 18px;
+  padding: 0 4rem;
+  font-weight: 700;
+  width: 310px;
+  height: 85px;
+}
+
+.cont_btn__1 {
+  background-size: 30%;
+  background-position: -10px -5px;
+  background-image: url(../../img/empezar_partido.svg);
+}
+
+.cont_btn__2 {
+  background-image: url(../../img/equipo.svg);
+}
+
+.cont_btn__3 {
+  background-image: url(../../img/estadisticas.svg);
+}
+
+.cont_btn__4 {
+  background-image: url(../../img/pizarra.svg);
 }
 
 button {
-    display: block;
-    width: 200px;
-    padding: 10px;
-    margin: 10px auto;
-    background-color: #0141d5;
-    color: white;
-    border: none;
-    cursor: pointer;
+  display: block;
+  width: 200px;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: #0141d5;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }

@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scout Board</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-<div class="container">
-    <div class="logo">
-        <img src="imagenes/logo.png" alt="Scout Board Logo">
-    </div>
-    <div class="buttons">
-        <button onclick="startGame()">Iniciar Partido</button>
-        <button onclick="navigateTo('equipo.html')">Añadir equipo</button>
-        <button onclick="viewStats()">Ver estadísticas</button>
-    </div>
-</div>
-<script src="js/script.js"></script>
-
-</body>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <section class="sect">
+      <div class="cont">
+        <div class="cont_logo">
+          <img
+            src="../../resources/img/logo-scout-board.svg"
+            alt="Scout Board Logo" />
+        </div>
+        <div class="cont_btn">
+          <button class="cont_btn__1" onclick="startGame()">
+            Iniciar partido
+          </button>
+          <button class="cont_btn__2" onclick="navigateTo('equipo.html')">
+            Añadir equipo
+          </button>
+          <button class="cont_btn__3" onclick="navigateTo('equipo.html')">
+            Estadísticas
+          </button>
+          <button class="cont_btn__4" onclick="viewStats()">Pizarra</button>
+        </div>
+      </div>
+    </section>
+    <script src="js/script.js"></script>
+  </body>
 </html>
