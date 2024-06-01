@@ -12,4 +12,6 @@ public interface PartidoService {
     public void iniciarPartido(Integer idEquipo);
 
     public List<EstadisticasJugador> estadisticasPartido(Integer idPartido);
+
+    public void borrarPartido(Integer idPartido);
 }

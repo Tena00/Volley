@@ -11,6 +11,7 @@ import com.manuel.tfg.exception.JugadorExistenteException;
 import com.manuel.tfg.services.EquipoService;
 import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
 import com.manuel.tfg.services.JugadoresService;
+import com.manuel.tfg.services.PartidoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class EquipoServiceImpl implements EquipoService {
 
     private EstadisticasJugadorPartidoService estadisticasJugadorPartidoService;
     private JugadoresService jugadoresService;
+    private PartidoService partidoService;
 
-    public EquipoServiceImpl(RepositorioEquipos repositorioEquipos, RepositorioJugadores repositorioJugadores, RepositorioPartidos repositorioPartidos,JugadoresService jugadoresService ) {
+    public EquipoServiceImpl(RepositorioEquipos repositorioEquipos, RepositorioJugadores repositorioJugadores, RepositorioPartidos repositorioPartidos,JugadoresService jugadoresService, PartidoService partidoService ) {
         this.repositorioEquipos = repositorioEquipos;
         this.repositorioJugadores = repositorioJugadores;
         this.repositorioPartidos = repositorioPartidos;
         this.jugadoresService = jugadoresService;
+        this.partidoService = partidoService;
     }
 
 
@@ -55,8 +58,12 @@ public class EquipoServiceImpl implements EquipoService {
     public void eliminarEquipo(Integer id) throws EquipoExistenteExcepcion, JugadorExistenteException {
         if (repositorioEquipos.existsById(id)) {
             List<Jugador> jugadores = repositorioEquipos.findByIdEquipoIdJugador(id);
+            List<Partido> partidos = repositorioPartidos.findByIdPartidoIdEquipo(id);
             for (Jugador jugador : jugadores) {
                 jugadoresService.eliminarJugador(jugador.getIdJugador());
+            }
+            for (Partido partido : partidos){
+                partidoService.borrarPartido(partido.getIdPartido());
             }
 
             repositorioEquipos.deleteById(id);

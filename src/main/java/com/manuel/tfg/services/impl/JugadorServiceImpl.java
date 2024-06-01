@@ -60,25 +60,25 @@ public class JugadorServiceImpl implements JugadoresService {
             }
             repositorioJugadores.deleteById(id);
         } else {
-            throw new JugadorExistenteException("El jugador con id " + id + " no existe.");
+            throw new JugadorExistenteException("El jugador con id " + id + " no existe.");git 
         }
     }
 
 
     @Override
-    public void actualizarEquipo(Integer idJugador, Integer idEquipo) throws EquipoExistenteExcepcion,JugadorExistenteException {
+    public void actualizarEquipo(Integer idJugador, Integer idEquipo) throws EquipoExistenteExcepcion, JugadorExistenteException {
         Optional<Jugador> optionalJugador = repositorioJugadores.findById(idJugador);
-        if(optionalJugador.isPresent()){
+        if (optionalJugador.isPresent()) {
             Jugador jugador = optionalJugador.get();
             Optional<Equipo> equipoOptional = repositorioEquipos.findById(idEquipo);
-            if (equipoOptional.isPresent()){
+            if (equipoOptional.isPresent()) {
                 Equipo equipo = equipoOptional.get();
                 jugador.setEquipo(equipo);
                 repositorioJugadores.save(jugador);
-            }else{
+            } else {
                 throw new EquipoExistenteExcepcion("El equipo con id " + idEquipo + " no existe.");
             }
-        }else {
+        } else {
             throw new JugadorExistenteException("El jugador con id " + idJugador + " no existe.");
         }
 
