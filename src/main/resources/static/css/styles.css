@@ -3,6 +3,12 @@
 /* END Fonts */
 
 /* General */
+:root {
+  --bg-color: #058fdb;
+  --hover-color: #45a049;
+  --btn-color: #0d0f28;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
@@ -15,7 +21,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #058fdb;
+  background-color: var(--bg-color);
 }
 
 /* Home */
@@ -34,10 +40,23 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-content: center;
 }
 
-T .logo img {
+.cont_logo img {
   width: 200px;
+}
+
+button {
+  width: 200px;
+  padding: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--hover-color);
 }
 
 .cont_btn {
@@ -52,7 +71,7 @@ T .logo img {
 .cont_btn__2,
 .cont_btn__3,
 .cont_btn__4 {
-  background-color: #0d0f28;
+  background-color: var(--btn-color);
   border-radius: 64px;
   background-size: 23%;
   background-repeat: no-repeat;
@@ -83,17 +102,110 @@ T .logo img {
   background-image: url(../../img/pizarra.svg);
 }
 
-button {
-  display: block;
-  width: 200px;
-  padding: 10px;
-  margin: 10px auto;
-  background-color: #0141d5;
-  color: white;
-  border: none;
-  cursor: pointer;
+/* Partido */
+.sect_partido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem;
+  gap: 2rem;
 }
 
-button:hover {
-  background-color: #45a049;
+.cont_nav__logo img {
+  width: 150px;
+}
+
+.cont_nav {
+  width: 40%;
+  background-color: white;
+  padding: 1rem 3rem;
+  border-radius: 16rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 4rem;
+}
+
+.cont_nav__btn {
+  display: flex;
+  gap: 0 1rem;
+}
+
+.btn_partido {
+  width: 150px;
+  height: 50px;
+  padding: 0 2rem;
+}
+
+/* Jugadores */
+.cont_buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+
+.cont_buttons__remates {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16rem;
+  gap: 0 1.5rem;
+}
+
+.remates_rojo,
+.remates_verde,
+.remates_amarillo {
+  width: 80px;
+  height: 80px;
+  border-radius: 150px;
+}
+
+.remates_rojo {
+  background-color: red;
+}
+
+.remates_verde {
+  background-color: green;
+}
+
+.remates_amarillo {
+  background-color: rgb(255, 247, 0);
+}
+
+.cont_buttons__jugadores {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+
+.jugadores_seisInicial,
+.jugadores_suplentes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem 0;
+}
+
+.seisInicial_titulo,
+.suplentes_titulo {
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: white;
+  margin: 0;
+}
+
+/* END Partido */
+/* Media Queries */
+/* Tablet */
+@media (max-width: 768px) {
+}
+
+@media (max-width: 1024px) {
+}
+
+/* Desktop */
+@media (min-width: 1920) {
 }
