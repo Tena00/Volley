@@ -25,6 +25,16 @@ public class JugadorController {
         return jugadoresService.todosJugadores();
     }
 
+    @GetMapping("/titulares")
+    public List<Jugador> mostrarTitularesJugadores(){
+        return jugadoresService.titularesJugadores();
+    }
+
+    @GetMapping("/suplentes")
+    public List<Jugador> mostrarSuplentesJugadores(){
+        return jugadoresService.suplentesJugadores();
+    }
+
     @PostMapping("/addJugador")
     public ResponseEntity addJugador(@RequestBody Jugador jugador){
 

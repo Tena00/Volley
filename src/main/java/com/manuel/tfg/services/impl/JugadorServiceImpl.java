@@ -39,6 +39,20 @@ public class JugadorServiceImpl implements JugadoresService {
     }
 
     @Override
+    public List<Jugador> titularesJugadores() {
+        List<Jugador> jugadorList;
+        jugadorList = repositorioJugadores.findAllByTitular();
+        return jugadorList;
+    }
+
+    @Override
+    public List<Jugador> suplentesJugadores() {
+        List<Jugador> jugadorList;
+        jugadorList = repositorioJugadores.findAllBySuplentes();
+        return jugadorList;
+    }
+
+    @Override
     public void addJugador(Jugador jugador) throws JugadorExistenteException {
         List<Jugador> listaJugadores = repositorioJugadores.findAll();
         for (Jugador jugon : listaJugadores) {

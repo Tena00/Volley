@@ -10,6 +10,10 @@ public interface JugadoresService {
 
     public List<Jugador> todosJugadores();
 
+    public List<Jugador> titularesJugadores();
+
+    public List<Jugador> suplentesJugadores();
+
     public void addJugador(Jugador jugador) throws JugadorExistenteException;
 
     public void eliminarJugador(Integer id) throws JugadorExistenteException;

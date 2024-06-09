@@ -13,6 +13,8 @@ public class Jugador {
     private String nombre;
     @Column(name = "Dorsal")
     private Integer dorsal;
+    @Column(name = "Titular")
+    private Boolean titular;
 
     @ManyToOne
     @JoinColumn(name = "ID_Equipo")
@@ -21,10 +23,11 @@ public class Jugador {
     public Jugador() {
     }
 
-    public Jugador(Integer idJugador, String nombre, Integer dorsal) {
+    public Jugador(Integer idJugador, String nombre, Integer dorsal, Boolean titular) {
         this.idJugador = idJugador;
         this.nombre = nombre;
         this.dorsal = dorsal;
+        this.titular = titular;
     }
 
     public Integer getIdJugador() {
@@ -57,5 +60,13 @@ public class Jugador {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+
+    public Boolean getTitular() {
+        return titular;
+    }
+
+    public void setTitular(Boolean titular) {
+        this.titular = titular;
     }
 }
