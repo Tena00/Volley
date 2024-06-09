@@ -60,7 +60,7 @@ public class JugadorServiceImpl implements JugadoresService {
             }
             repositorioJugadores.deleteById(id);
         } else {
-            throw new JugadorExistenteException("El jugador con id " + id + " no existe.");git 
+            throw new JugadorExistenteException("El jugador con id " + id + " no existe.");
         }
     }
 
