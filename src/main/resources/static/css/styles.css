@@ -49,7 +49,6 @@ body {
 
 button {
   width: 200px;
-  padding: 10px;
   color: white;
   border: none;
   cursor: pointer;
@@ -107,9 +106,14 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   margin: 2rem;
   gap: 2rem;
+}
+
+.sect_nav {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .cont_nav__logo img {
@@ -197,6 +201,122 @@ button:hover {
   margin: 0;
 }
 
+/* Mitades */
+.cont_campo {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 2rem;
+}
+.mitad_linea,
+.mitad_z3metros_1,
+.mitad_z3metros_2 {
+  background-color: white;
+  width: 5px;
+}
+
+.campo_mitades {
+  display: flex;
+  position: relative;
+}
+
+.mitad_z3metros_1 {
+  position: absolute;
+  left: 455px;
+  height: 100%;
+}
+
+.mitad_z3metros_2 {
+  position: absolute;
+  left: 760px;
+  height: 100%;
+  background-color: white;
+}
+
+.mitad1,
+.mitad2 {
+  display: flex;
+}
+
+.mitad1_zonas,
+.mitad2 {
+  background-color: #ffce73;
+  display: flex;
+}
+
+.mitad1_zonas {
+  border: 10px solid rgb(255, 255, 255);
+  border-right-width: 0px;
+}
+
+.mitad2_zonas {
+  border: 10px solid rgb(255, 255, 255);
+  border-left-width: 0px;
+}
+
+.s5,
+.s6,
+.s9 {
+  width: 150px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #0d0f28;
+}
+
+.z1,
+.z2,
+.z3,
+.z4,
+.z5,
+.z6,
+.z7,
+.z8,
+.z9,
+.r1,
+.r2,
+.r3,
+.r4,
+.r5,
+.r6,
+.r7,
+.r8,
+.r9 {
+  width: 150px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #0d0f28;
+}
+
+.s5:hover,
+.s6:hover,
+.s9:hover,
+.z1:hover,
+.z2:hover,
+.z3:hover,
+.z4:hover,
+.z5:hover,
+.z6:hover,
+.z7:hover,
+.z8:hover,
+.z9:hover,
+.r1:hover,
+.r2:hover,
+.r3:hover,
+.r4:hover,
+.r5:hover,
+.r6:hover,
+.r7:hover,
+.r8:hover,
+.r9:hover {
+  background-color: #ffb836;
+}
+
 /* END Partido */
 /* Media Queries */
 /* Tablet */
@@ -204,8 +324,4 @@ button:hover {
 }
 
 @media (max-width: 1024px) {
-}
-
-/* Desktop */
-@media (min-width: 1920) {
 }
