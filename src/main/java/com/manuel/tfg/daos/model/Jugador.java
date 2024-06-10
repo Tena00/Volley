@@ -69,4 +69,8 @@ public class Jugador {
     public void setTitular(Boolean titular) {
         this.titular = titular;
     }
+
+    public boolean isTitular(){
+        return titular;
+    }
 }

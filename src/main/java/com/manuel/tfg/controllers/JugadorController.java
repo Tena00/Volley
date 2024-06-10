@@ -35,6 +35,11 @@ public class JugadorController {
         return jugadoresService.suplentesJugadores();
     }
 
+    @PutMapping("/{id}")
+    public Jugador actualizarEstadoJugador(@PathVariable Integer id, @RequestBody Jugador jugador) {
+        return jugadoresService.actualizarEstadoJugador(id, jugador.isTitular());
+    }
+
     @PostMapping("/addJugador")
     public ResponseEntity addJugador(@RequestBody Jugador jugador){
 

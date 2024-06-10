@@ -52,6 +52,12 @@ public class JugadorServiceImpl implements JugadoresService {
         return jugadorList;
     }
 
+    public Jugador actualizarEstadoJugador(Integer id, boolean titular) {
+        Jugador jugador = repositorioJugadores.findById(id).orElseThrow(() -> new RuntimeException("Jugador no encontrado"));
+        jugador.setTitular(titular);
+        return repositorioJugadores.save(jugador);
+    }
+
     @Override
     public void addJugador(Jugador jugador) throws JugadorExistenteException {
         List<Jugador> listaJugadores = repositorioJugadores.findAll();

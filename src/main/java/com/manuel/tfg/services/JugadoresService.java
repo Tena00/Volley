@@ -14,6 +14,8 @@ public interface JugadoresService {
 
     public List<Jugador> suplentesJugadores();
 
+    public Jugador actualizarEstadoJugador(Integer id, boolean titular);
+
     public void addJugador(Jugador jugador) throws JugadorExistenteException;
 
     public void eliminarJugador(Integer id) throws JugadorExistenteException;

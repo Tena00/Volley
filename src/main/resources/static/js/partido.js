@@ -1,3 +1,6 @@
+let jugadorTitularSeleccionado = null;
+let jugadorSuplenteSeleccionado = null;
+
 // Función para obtener los jugadores titulares desde la API
 function obtenerJugadoresTitulares() {
     fetch('http://localhost:8080/jugadores/titulares')
@@ -10,20 +13,20 @@ function obtenerJugadoresTitulares() {
         .then(data => {
             console.log(data); // Verificar los datos recibidos de la API
             // Actualizar el contenido de cada botón con los nombres de los jugadores
-            actualizarBotones(data);
+            actualizarBotonesTitulares(data);
         })
         .catch(error => {
             console.error('Error al obtener los datos de la API:', error);
         });
 }
 
-// Función para actualizar los botones con los nombres de los jugadores
-function actualizarBotones(data) {
-    const botones = document.querySelectorAll('.list-group-item');
+// Función para actualizar los botones con los nombres de los jugadores titulares
+function actualizarBotonesTitulares(data) {
     data.forEach((jugador, index) => {
-        const boton = botones[index];
+        const boton = document.getElementById(`botonJugador${index + 1}`);
         if (boton) {
             boton.innerText = `${jugador.nombre} ${jugador.dorsal}`;
+            boton.dataset.id = jugador.id; // Guardar el ID del jugador en el botón
         }
     });
 }
@@ -40,26 +43,105 @@ function obtenerJugadoresSuplentes() {
         .then(data => {
             console.log(data); // Verificar los datos recibidos de la API
             // Actualizar el contenido de cada botón con los nombres de los jugadores
-            actualizarBotones_Suplentes(data);
+            actualizarBotonesSuplentes(data);
         })
         .catch(error => {
             console.error('Error al obtener los datos de la API:', error);
         });
 }
 
-// Función para actualizar los botones con los nombres de los jugadores
-function actualizarBotones_Suplentes(data) {
+// Función para actualizar los botones con los nombres de los jugadores suplentes
+function actualizarBotonesSuplentes(data) {
     data.forEach((jugador, index) => {
-        const boton = document.getElementById(`bottonJugador${index+1}`);
+        const boton = document.getElementById(`bottonJugador${index + 1}`);
         if (boton) {
             boton.innerText = `${jugador.nombre} ${jugador.dorsal}`;
+            boton.dataset.id = jugador.id; // Guardar el ID del jugador en el botón
         }
     });
 }
 
 // Llamar a ambas funciones para obtener los jugadores (titulares y suplentes) cuando se cargue la página
-window.onload = function() {
+window.onload = function () {
     obtenerJugadoresTitulares();
     obtenerJugadoresSuplentes();
 };
+
+// Funcionalidad de selección y rotación de jugadores
+document.addEventListener('DOMContentLoaded', function () {
+    // Selección de jugadores titulares
+    const titulares = document.querySelectorAll('.jugadores_seisInicial .list-group-item');
+    titulares.forEach(titular => {
+        titular.addEventListener('click', function () {
+            if (jugadorTitularSeleccionado) {
+                jugadorTitularSeleccionado.classList.remove('selected');
+            }
+            jugadorTitularSeleccionado = titular;
+            titular.classList.add('selected');
+        });
+    });
+
+    // Selección de jugadores suplentes
+    const suplentes = document.querySelectorAll('.jugadores_suplentes .list-group-item');
+    suplentes.forEach(suplente => {
+        suplente.addEventListener('click', function () {
+            if (jugadorSuplenteSeleccionado) {
+                jugadorSuplenteSeleccionado.classList.remove('selected');
+            }
+            jugadorSuplenteSeleccionado = suplente;
+            suplente.classList.add('selected');
+        });
+    });
+
+    // Intercambio de jugadores
+    const btnRotacion = document.getElementById('rotacion');
+    btnRotacion.addEventListener('click', function () {
+        if (jugadorTitularSeleccionado && jugadorSuplenteSeleccionado) {
+            const titularId = jugadorTitularSeleccionado.dataset.id;
+            const suplenteId = jugadorSuplenteSeleccionado.dataset.id;
+
+            // Intercambio en la interfaz
+            const titularTexto = jugadorTitularSeleccionado.textContent;
+            const suplenteTexto = jugadorSuplenteSeleccionado.textContent;
+
+            jugadorTitularSeleccionado.textContent = suplenteTexto;
+            jugadorSuplenteSeleccionado.textContent = titularTexto;
+
+            jugadorTitularSeleccionado.classList.remove('selected');
+            jugadorSuplenteSeleccionado.classList.remove('selected');
+
+            jugadorTitularSeleccionado = null;
+            jugadorSuplenteSeleccionado = null;
+
+            // Actualización en la base de datos
+            actualizarEstadoJugador(titularId, false); // Cambiar titular a suplente
+            actualizarEstadoJugador(suplenteId, true); // Cambiar suplente a titular
+        } else {
+            alert('Selecciona un jugador titular y un suplente para hacer la rotación.');
+        }
+    });
+});
+
+// Función para actualizar el estado de un jugador en la base de datos
+function actualizarEstadoJugador(jugadorId, esTitular) {
+    fetch(`http://localhost:8080/jugadores/${jugadorId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ titular: esTitular })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar el estado del jugador.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Estado del jugador actualizado:', data);
+        })
+        .catch(error => {
+            console.error('Error al actualizar el estado del jugador:', error);
+        });
+}
 
