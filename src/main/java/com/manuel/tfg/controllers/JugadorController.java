@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/jugadores")
@@ -35,9 +36,11 @@ public class JugadorController {
         return jugadoresService.suplentesJugadores();
     }
 
-    @PutMapping("/{id}")
-    public Jugador actualizarEstadoJugador(@PathVariable Integer id, @RequestBody Jugador jugador) {
-        return jugadoresService.actualizarEstadoJugador(id, jugador.isTitular());
+    @PutMapping("/{jugadorId}")
+    public ResponseEntity<String> actualizarEstadoJugador(@PathVariable("jugadorId") Integer id, @RequestBody Map<String, Boolean> requestBody) {
+        boolean esTitular = requestBody.get("titular");
+        jugadoresService.actualizarEstadoJugador(id, esTitular);
+        return ResponseEntity.ok("Estado del jugador actualizado correctamente.");
     }
 
     @PostMapping("/addJugador")

@@ -11,8 +11,7 @@ function obtenerJugadoresTitulares() {
             return response.json();
         })
         .then(data => {
-            console.log(data); // Verificar los datos recibidos de la API
-            // Actualizar el contenido de cada botón con los nombres de los jugadores
+            console.log('Datos de jugadores titulares:', data); // Verificar los datos recibidos de la API
             actualizarBotonesTitulares(data);
         })
         .catch(error => {
@@ -26,7 +25,7 @@ function actualizarBotonesTitulares(data) {
         const boton = document.getElementById(`botonJugador${index + 1}`);
         if (boton) {
             boton.innerText = `${jugador.nombre} ${jugador.dorsal}`;
-            boton.dataset.id = jugador.id; // Guardar el ID del jugador en el botón
+            boton.dataset.id = jugador.idJugador; // Guardar el ID del jugador en el botón
         }
     });
 }
@@ -41,8 +40,7 @@ function obtenerJugadoresSuplentes() {
             return response.json();
         })
         .then(data => {
-            console.log(data); // Verificar los datos recibidos de la API
-            // Actualizar el contenido de cada botón con los nombres de los jugadores
+            console.log('Datos de jugadores suplentes:', data); // Verificar los datos recibidos de la API
             actualizarBotonesSuplentes(data);
         })
         .catch(error => {
@@ -53,10 +51,10 @@ function obtenerJugadoresSuplentes() {
 // Función para actualizar los botones con los nombres de los jugadores suplentes
 function actualizarBotonesSuplentes(data) {
     data.forEach((jugador, index) => {
-        const boton = document.getElementById(`bottonJugador${index + 1}`);
+        const boton = document.getElementById(`botonSuplente${index + 1}`);
         if (boton) {
             boton.innerText = `${jugador.nombre} ${jugador.dorsal}`;
-            boton.dataset.id = jugador.id; // Guardar el ID del jugador en el botón
+            boton.dataset.id = jugador.idJugador; // Guardar el ID del jugador en el botón
         }
     });
 }
@@ -107,6 +105,11 @@ document.addEventListener('DOMContentLoaded', function () {
             jugadorTitularSeleccionado.textContent = suplenteTexto;
             jugadorSuplenteSeleccionado.textContent = titularTexto;
 
+            // Intercambio de dataset.id en la interfaz
+            const tempId = jugadorTitularSeleccionado.dataset.id;
+            jugadorTitularSeleccionado.dataset.id = jugadorSuplenteSeleccionado.dataset.id;
+            jugadorSuplenteSeleccionado.dataset.id = tempId;
+
             jugadorTitularSeleccionado.classList.remove('selected');
             jugadorSuplenteSeleccionado.classList.remove('selected');
 
@@ -122,8 +125,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Función para actualizar el estado de un jugador en la base de datos
 function actualizarEstadoJugador(jugadorId, esTitular) {
+    console.log(`Actualizando estado del jugador con ID: ${jugadorId} a titular: ${esTitular}`);
     fetch(`http://localhost:8080/jugadores/${jugadorId}`, {
         method: 'PUT',
         headers: {
@@ -135,13 +138,9 @@ function actualizarEstadoJugador(jugadorId, esTitular) {
             if (!response.ok) {
                 throw new Error('Error al actualizar el estado del jugador.');
             }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Estado del jugador actualizado:', data);
+            console.log('Estado del jugador actualizado:', response.status);
         })
         .catch(error => {
             console.error('Error al actualizar el estado del jugador:', error);
         });
 }
-

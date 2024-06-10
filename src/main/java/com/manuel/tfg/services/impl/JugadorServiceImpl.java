@@ -8,6 +8,7 @@ import com.manuel.tfg.daos.model.EstadisticasJugador;
 import com.manuel.tfg.daos.model.Jugador;
 import com.manuel.tfg.exception.EquipoExistenteExcepcion;
 import com.manuel.tfg.exception.JugadorExistenteException;
+import com.manuel.tfg.services.EquipoService;
 import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
 import com.manuel.tfg.services.JugadoresService;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,14 @@ public class JugadorServiceImpl implements JugadoresService {
     private RepositorioEstadisticas repositorioEstadisticas;
 
     private EstadisticasJugadorPartidoService estadisticasJugadorPartidoService;
+    private EquipoService equipoService;
 
     public JugadorServiceImpl(RepositorioJugadores repositorioJugadores, RepositorioEquipos repositorioEquipos, RepositorioEstadisticas repositorioEstadisticas, EstadisticasJugadorPartidoService estadisticasJugadorPartidoService) {
         this.repositorioJugadores = repositorioJugadores;
         this.repositorioEquipos = repositorioEquipos;
         this.repositorioEstadisticas = repositorioEstadisticas;
         this.estadisticasJugadorPartidoService = estadisticasJugadorPartidoService;
+
     }
 
     @Override
