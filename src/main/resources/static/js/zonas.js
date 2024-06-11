@@ -1,6 +1,6 @@
-window.onload = function () {
-obtenerZonasCampo();
-};
+window.addEventListener('load', function() {
+    obtenerZonasCampo();
+});
 
 // Función para obtener los datos de las Zonas del campo desde la API
 function obtenerZonasCampo() {
@@ -12,20 +12,20 @@ function obtenerZonasCampo() {
             return response.json();
         })
         .then(data => {
-            console.log('Datos de las Zonas:', data); // Verificar los datos recibidos de la API
-            actualizarZonasCampo(data);
+            console.log('Datos de las zonas del campo:', data); // Verificar los datos recibidos de la API
+            actualizarBotonesZonasCampo(data);
         })
         .catch(error => {
             console.error('Error al obtener los datos de la API:', error);
         });
 }
 
-// Función para actualizar los botones con los nombres de los jugadores suplentes
-function actualizarZonasCampo(data) {
+// Función para actualizar los botones con los nombres de las zonas del campo
+function actualizarBotonesZonasCampo(data) {
     data.forEach((zonasCampo, index) => {
         const boton = document.getElementById(`zonaCampo${index + 1}`);
         if (boton) {
-            boton.dataset.id = zonasCampo.idZonaCampo; // Guardar el ID del jugador en el botón
+            boton.dataset.id = zonasCampo.idZonaCampo; // Guardar el ID de la zona en el botón
         }
     });
 }

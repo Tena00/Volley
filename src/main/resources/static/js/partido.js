@@ -60,10 +60,10 @@ function actualizarBotonesSuplentes(data) {
 }
 
 // Llamar a ambas funciones para obtener los jugadores (titulares y suplentes) cuando se cargue la página
-window.onload = function () {
+window.addEventListener('load', function() {
     obtenerJugadoresTitulares();
     obtenerJugadoresSuplentes();
-};
+});
 
 // Funcionalidad de selección y rotación de jugadores
 document.addEventListener('DOMContentLoaded', function () {
