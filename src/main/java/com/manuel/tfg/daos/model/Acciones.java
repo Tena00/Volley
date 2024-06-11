@@ -26,14 +26,21 @@ public class Acciones {
     @Column(name = "Color_Resultado_Accion")
     private String coloResultado;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_Estadisticas_Zona_Ataque")
+    private EstadisticasAtaque estadisticasAtaque;
+
     public Acciones() {
     }
 
-    public Acciones(Integer idAccion, EstadisticasJugador estadisticasJugador, EstadisticasZona estadisticasZona, String coloResultado) {
+    public Acciones(Integer idAccion, EstadisticasJugador estadisticasJugador, EstadisticasZona estadisticasZona, String coloResultado, EstadisticasAtaque estadisticasAtaque, Partido partido) {
         this.idAccion = idAccion;
         this.estadisticasJugador = estadisticasJugador;
         this.estadisticasZona = estadisticasZona;
         this.coloResultado = coloResultado;
+        this.partido = partido;
+        this.estadisticasAtaque = estadisticasAtaque;
+
     }
 
     public Integer getIdAccion() {
@@ -74,5 +81,13 @@ public class Acciones {
 
     public void setPartido(Partido partido) {
         this.partido = partido;
+    }
+
+    public EstadisticasAtaque getEstadisticasAtaque() {
+        return estadisticasAtaque;
+    }
+
+    public void setEstadisticasAtaque(EstadisticasAtaque estadisticasAtaque) {
+        this.estadisticasAtaque = estadisticasAtaque;
     }
 }

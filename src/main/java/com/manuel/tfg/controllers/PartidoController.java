@@ -38,9 +38,5 @@ public class PartidoController {
        return  partidoService.estadisticasPartido(idPartido);
     }
 
-    @GetMapping("/prueba")
-    public String home(){
-        return "funciona idiota";
-    }
 
 }
