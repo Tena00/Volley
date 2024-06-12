@@ -385,6 +385,15 @@ button:hover {
   background-color: #ffb836;
 }
 
+/* Equipo */
+.sect_equipo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  gap: 2rem;
+}
+
 /* END Partido */
 /* Media Queries */
 /* Tablet */
