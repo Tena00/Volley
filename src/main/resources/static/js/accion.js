@@ -26,39 +26,75 @@ function selectZona(zona) {
 function selectZonaAtaque(zonaAtaque) {
     zonaAtaqueSeleccionada = zonaAtaque;
     console.log("Zona de ataque seleccionada:", zonaAtaqueSeleccionada);
+    submitAccion();
 }
 
 // Función para enviar la acción al endpoint
 function submitAccion() {
     if (!resultadoAccionSeleccionado || !jugadorSeleccionado || !zonaSeleccionada || !zonaAtaqueSeleccionada) {
         alert("Por favor, selecciona todos los campos.");
+        resetVariables();
         return;
     }
+    console.log(typeof zonaSeleccionada);
 
-    const data = {
-        idPartido: idPartido,
-        idJugador: jugadorSeleccionado,
-        idZona: zonaSeleccionada,
-        idZonaAtaque: zonaAtaqueSeleccionada,
-        resultadoAccion: resultadoAccionSeleccionado
-    };
+    if( zonaSeleccionada === "10" || zonaSeleccionada === "11" || zonaSeleccionada === "12"){
 
-    fetch('http://localhost:8080/accion/remate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Éxito:', data);
-            alert("Acción registrada correctamente.");
+        const data = {
+            idPartido: idPartido,
+            idJugador: jugadorSeleccionado,
+            idZona: zonaSeleccionada,
+            idZonaAtaque: zonaAtaqueSeleccionada,
+            resultadoAccion: resultadoAccionSeleccionado
+        };
+
+        fetch('http://localhost:8080/accion/saque', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert("Error al registrar la acción.");
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log('Éxito:', data);
+                alert("Saque registrado correctamente.");
+                resetVariables();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("Error al registrar el saque.");
+                resetVariables();
+            });
+    }else{
+
+        const data = {
+            idPartido: idPartido,
+            idJugador: jugadorSeleccionado,
+            idZona: zonaSeleccionada,
+            idZonaAtaque: zonaAtaqueSeleccionada,
+            resultadoAccion: resultadoAccionSeleccionado
+        };
+
+        fetch('http://localhost:8080/accion/remate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Éxito:', data);
+                alert("Acción registrada correctamente.");
+                resetVariables();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("Error al registrar la acción.");
+                resetVariables();
+            });
+    }
 }
 
 // Event listeners para los botones de la interfaz
@@ -75,14 +111,24 @@ document.querySelectorAll('.list-group-item').forEach(button => {
     });
 });
 
-document.querySelectorAll('.s5, .s6, .s9, .z1, .z2, .z3, .z4, .z5, .z6, .z7, .z8, .z9, .r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8, .r9').forEach(button => {
+document.querySelectorAll('.s5, .s6, .s9, .z1, .z2, .z3, .z4, .z5, .z6, .z7, .z8, .z9').forEach(button => {
     button.addEventListener('click', () => {
-        selectZona(button.classList[0].slice(1));
+        const zonaId = button.dataset.id; // Obtener el ID del jugador del botón
+        selectZona(zonaId);
     });
 });
 
-document.querySelectorAll('.campo_mitades .mitad2 .mitad2_zonas button').forEach(button => {
+document.querySelectorAll('.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8, .r9').forEach(button => {
     button.addEventListener('click', () => {
         selectZonaAtaque(button.classList[0].slice(1));
     });
 });
+
+
+function resetVariables() {
+    resultadoAccionSeleccionado = null;
+    jugadorSeleccionado = null;
+    zonaSeleccionada = null;
+    zonaAtaqueSeleccionada = null;
+    console.log("Variables reiniciadas.");
+}

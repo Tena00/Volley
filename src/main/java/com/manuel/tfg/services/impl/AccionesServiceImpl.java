@@ -63,11 +63,11 @@ public class AccionesServiceImpl implements AccionesService {
                 estadisticasAtaque.setPartido(partido);
                 estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
                 accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
 
@@ -78,11 +78,11 @@ public class AccionesServiceImpl implements AccionesService {
                 estadisticasAtaque.setPartido(partido);
                 estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
                 accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
 
@@ -93,20 +93,20 @@ public class AccionesServiceImpl implements AccionesService {
                 estadisticasZona.setPartido(partido);
                 estadisticasZona.setIdZona(zonasCampo);
                 accionesPartido.setEstadisticasZona(estadisticasZona);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
             } else {
                 accionesPartido.setEstadisticasZona(estadisticasZona);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
             }
@@ -127,11 +127,11 @@ public class AccionesServiceImpl implements AccionesService {
                 estadisticasAtaque.setPartido(partido);
                 estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
                 accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
 
@@ -142,11 +142,11 @@ public class AccionesServiceImpl implements AccionesService {
                 estadisticasAtaque.setPartido(partido);
                 estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
                 accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
 
@@ -157,20 +157,20 @@ public class AccionesServiceImpl implements AccionesService {
                 estadisticasZona.setPartido(partido);
                 estadisticasZona.setIdZona(zonasCampo);
                 accionesPartido.setEstadisticasZona(estadisticasZona);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
             } else {
                 accionesPartido.setEstadisticasZona(estadisticasZona);
-                if ((resultadoAccion.equals("Rojo"))) {
+                if ((resultadoAccion.equals("rojo"))) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Amarillo")) {
+                } else if (resultadoAccion.equals("amarillo")) {
                     remateBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
-                } else if (resultadoAccion.equals("Verde")) {
+                } else if (resultadoAccion.equals("verde")) {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
             }
@@ -192,16 +192,12 @@ public class AccionesServiceImpl implements AccionesService {
         estadisticasJugador.setRematesTotal(0);
         estadisticasJugador.setRematesBloqueados(0);
         estadisticasJugador.setRematesPuntos(0);
-        estadisticasJugador.setSaquesTotal(0);
-        estadisticasJugador.setSaquesPuntos(0);
     }
 
     private void inicializarEstadisticasZona(EstadisticasZona estadisticasZona) {
         estadisticasZona.setRematesTotal(0);
         estadisticasZona.setRematesBloqueados(0);
         estadisticasZona.setRematesPuntos(0);
-        estadisticasZona.setSaquesTotal(0);
-        estadisticasZona.setSaquesPuntos(0);
     }
 
     private void remateFallado(EstadisticasJugador estadisticasJugador, EstadisticasZona estadisticasZona, EstadisticasAtaque estadisticasAtaque) {
@@ -233,8 +229,186 @@ public class AccionesServiceImpl implements AccionesService {
         estadisticasAtaque.setRematesTotal(0);
         estadisticasAtaque.setRematesBloqueados(0);
         estadisticasAtaque.setRematesPuntos(0);
+    }
+
+    public void realizarSaque(Integer idPartido, Integer idJugador, Integer idZona, Integer idZonaAtaque, String resultadoAccion){
+        EstadisticasJugador estadisticasJugador = repositorioEstadisticas.findByIdPartidoIdJugador(idPartido, idJugador);
+        EstadisticasZona estadisticasZona = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido, idZona);
+        EstadisticasAtaque estadisticasAtaque = repositorioEstadisticasAtaque.findByIdPartidoIdZonaAtaque(idPartido, idZonaAtaque);
+        Optional<Jugador> jugadorOp = repositorioJugadores.findById(idJugador);
+        Optional<Partido> partidoOp = repositorioPartidos.findById(idPartido);
+        Optional<ZonasCampo> zonasCampoOp = repositorioZonas.findById(idZona);
+        Optional<ZonasAtaque> zonasAtaqueOp = repositorioZonasAtaque.findById(idZonaAtaque);
+        Acciones accionesPartido = new Acciones();
+        if (ObjectUtils.isEmpty(estadisticasJugador)) {
+            estadisticasJugador = new EstadisticasJugador();
+            inicializarEstadisticasSaque(estadisticasJugador);
+            Partido partido = partidoOp.get();
+            Jugador jugador = jugadorOp.get();
+            estadisticasJugador.setJugador(jugador);
+            estadisticasJugador.setPartido(partido);
+            accionesPartido.setEstadisticasJugador(estadisticasJugador);
+            accionesPartido.setPartido(partido);
+            if (ObjectUtils.isEmpty(estadisticasZona) && ObjectUtils.isEmpty(estadisticasAtaque)) {
+                estadisticasZona = new EstadisticasZona();
+                estadisticasAtaque = new EstadisticasAtaque();
+                inicializarEstadisticasZonaSaque(estadisticasZona);
+                inicializarEstadisticasAtaqueSaque(estadisticasAtaque);
+                ZonasCampo zonasCampo = zonasCampoOp.get();
+                estadisticasZona.setPartido(partido);
+                estadisticasZona.setIdZona(zonasCampo);
+                accionesPartido.setEstadisticasZona(estadisticasZona);
+                ZonasAtaque zonasAtaque = zonasAtaqueOp.get();
+                estadisticasAtaque.setPartido(partido);
+                estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
+                accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+
+            } else if (ObjectUtils.isEmpty(estadisticasAtaque)) {
+                estadisticasAtaque = new EstadisticasAtaque();
+                inicializarEstadisticasAtaqueSaque(estadisticasAtaque);
+                ZonasAtaque zonasAtaque = zonasAtaqueOp.get();
+                estadisticasAtaque.setPartido(partido);
+                estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
+                accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+
+            } else if (ObjectUtils.isEmpty(estadisticasZona)) {
+                estadisticasZona = new EstadisticasZona();
+                inicializarEstadisticasZonaSaque(estadisticasZona);
+                ZonasCampo zonasCampo = zonasCampoOp.get();
+                estadisticasZona.setPartido(partido);
+                estadisticasZona.setIdZona(zonasCampo);
+                accionesPartido.setEstadisticasZona(estadisticasZona);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+            } else {
+                accionesPartido.setEstadisticasZona(estadisticasZona);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+            }
+        } else {
+            Partido partido = partidoOp.get();
+            accionesPartido.setEstadisticasJugador(estadisticasJugador);
+            accionesPartido.setPartido(partido);
+            if (ObjectUtils.isEmpty(estadisticasZona) && ObjectUtils.isEmpty(estadisticasAtaque)) {
+                estadisticasZona = new EstadisticasZona();
+                estadisticasAtaque = new EstadisticasAtaque();
+                inicializarEstadisticasZonaSaque(estadisticasZona);
+                inicializarEstadisticasAtaqueSaque(estadisticasAtaque);
+                ZonasCampo zonasCampo = zonasCampoOp.get();
+                estadisticasZona.setPartido(partido);
+                estadisticasZona.setIdZona(zonasCampo);
+                accionesPartido.setEstadisticasZona(estadisticasZona);
+                ZonasAtaque zonasAtaque = zonasAtaqueOp.get();
+                estadisticasAtaque.setPartido(partido);
+                estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
+                accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+
+            } else if (ObjectUtils.isEmpty(estadisticasAtaque)) {
+                estadisticasAtaque = new EstadisticasAtaque();
+                inicializarEstadisticasAtaqueSaque(estadisticasAtaque);
+                ZonasAtaque zonasAtaque = zonasAtaqueOp.get();
+                estadisticasAtaque.setPartido(partido);
+                estadisticasAtaque.setIdZonaAtaque(zonasAtaque);
+                accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+
+            } else if (ObjectUtils.isEmpty(estadisticasZona)) {
+                estadisticasZona = new EstadisticasZona();
+                inicializarEstadisticasZonaSaque(estadisticasZona);
+                ZonasCampo zonasCampo = zonasCampoOp.get();
+                estadisticasZona.setPartido(partido);
+                estadisticasZona.setIdZona(zonasCampo);
+                accionesPartido.setEstadisticasZona(estadisticasZona);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+            } else {
+                accionesPartido.setEstadisticasZona(estadisticasZona);
+                if ((resultadoAccion.equals("rojo"))) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("amarillo")) {
+                    saqueBloqueado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                } else if (resultadoAccion.equals("verde")) {
+                    saquePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
+                }
+            }
+        }
+        accionesPartido.setColoResultado(resultadoAccion);
+        repositorioEstadisticasZona.save(estadisticasZona);
+        repositorioEstadisticas.save(estadisticasJugador);
+        repositorioEstadisticasAtaque.save(estadisticasAtaque);
+        repositorioAcciones.save(accionesPartido);
+    }
+
+    private void inicializarEstadisticasSaque(EstadisticasJugador estadisticasJugador) {
+        estadisticasJugador.setSaquesTotal(0);
+        estadisticasJugador.setSaquesPuntos(0);
+    }
+
+    private void inicializarEstadisticasZonaSaque(EstadisticasZona estadisticasZona) {
+        estadisticasZona.setSaquesTotal(0);
+        estadisticasZona.setSaquesPuntos(0);
+    }
+
+    private void inicializarEstadisticasAtaqueSaque(EstadisticasAtaque estadisticasAtaque) {
         estadisticasAtaque.setSaquesTotal(0);
         estadisticasAtaque.setSaquesPuntos(0);
     }
 
+    private void saqueBloqueado(EstadisticasJugador estadisticasJugador, EstadisticasZona estadisticasZona, EstadisticasAtaque estadisticasAtaque) {
+        estadisticasJugador.setSaquesTotal(estadisticasJugador.getSaquesTotal() + 1);
+        estadisticasZona.setSaquesTotal(estadisticasZona.getSaquesTotal() + 1);
+        estadisticasAtaque.setSaquesTotal(estadisticasAtaque.getSaquesTotal() + 1);
+
+    }
+
+    private void saquePunto(EstadisticasJugador estadisticasJugador, EstadisticasZona estadisticasZona, EstadisticasAtaque estadisticasAtaque) {
+        estadisticasJugador.setSaquesTotal(estadisticasJugador.getSaquesTotal() + 1);
+        estadisticasZona.setSaquesTotal(estadisticasZona.getSaquesTotal() + 1);
+        estadisticasAtaque.setSaquesTotal(estadisticasAtaque.getSaquesTotal() + 1);
+        estadisticasJugador.setSaquesPuntos(estadisticasJugador.getSaquesPuntos() + 1);
+        estadisticasZona.setSaquesPuntos(estadisticasZona.getSaquesPuntos() + 1);
+        estadisticasAtaque.setSaquesPuntos(estadisticasAtaque.getSaquesPuntos() + 1);
+    }
 }

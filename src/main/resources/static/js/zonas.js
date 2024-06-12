@@ -26,7 +26,7 @@ function actualizarBotonesZonasCampo(data) {
     data.forEach((zonasCampo, index) => {
         const boton = document.getElementById(`zonaCampo${index + 1}`);
         if (boton) {
-            boton.dataset.id = zonasCampo.idZonaCampo; // Guardar el ID de la zona en el botón
+            boton.dataset.id = zonasCampo.idZonaCampo;// Guardar el ID de la zona en el botón
         }
     });
 }
@@ -41,7 +41,7 @@ function obtenerZonasAtaque() {
             return response.json();
         })
         .then(data => {
-            console.log('Datos de las zonas del campo:', data); // Verificar los datos recibidos de la API
+            console.log('Datos de las zonas Ataque del campo:', data); // Verificar los datos recibidos de la API
             actualizarBotonesZonasAtaque(data);
         })
         .catch(error => {
@@ -52,7 +52,7 @@ function obtenerZonasAtaque() {
 // Función para actualizar los botones con los nombres de las zonas del campo
 function actualizarBotonesZonasAtaque(data) {
     data.forEach((zonasAtaque, index) => {
-        const boton = document.getElementById(`zonaCampo${index + 1}`);
+        const boton = document.getElementById(`zonaAtaque${index + 1}`);
         if (boton) {
             boton.dataset.id = zonasAtaque.idZonaAtaque; // Guardar el ID de la zona en el botón
         }
