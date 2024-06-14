@@ -86,19 +86,19 @@ button:hover {
 .cont_btn__1 {
   background-size: 30%;
   background-position: -10px -5px;
-  background-image: url(../../img/empezar_partido.svg);
+  background-image: url(../imagenes/empezar_partido.svg);
 }
 
 .cont_btn__2 {
-  background-image: url(../../img/equipo.svg);
+  background-image: url(../imagenes/equipo.svg);
 }
 
 .cont_btn__3 {
-  background-image: url(../../img/estadisticas.svg);
+  background-image: url(../imagenes/estadisticas.svg);
 }
 
 .cont_btn__4 {
-  background-image: url(../../img/pizarra.svg);
+  background-image: url(../imagenes/pizarra.svg);
 }
 
 /* Partido */
@@ -121,9 +121,10 @@ button:hover {
 }
 
 .cont_nav {
-  width: 40%;
+  min-width: 30%;
+  max-width: 75%;
   background-color: white;
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
   border-radius: 16rem;
   display: flex;
   justify-content: space-between;
@@ -137,9 +138,10 @@ button:hover {
 }
 
 .btn_partido {
-  width: 150px;
+  width: auto;
   height: 50px;
-  padding: 0 2rem;
+  padding: 0 2rem 0 3rem;
+  text-align: right;
 }
 
 /* Jugadores */
@@ -214,7 +216,7 @@ button:hover {
   width: 5px;
 }
 
-.mitad_linea{
+.mitad_linea {
   width: 10px;
   display: flex;
   flex-direction: column;
@@ -222,27 +224,37 @@ button:hover {
   position: relative;
 }
 
-.linea{
+.linea {
   background-color: white;
   height: 110%;
 }
 
- .c1, .c2{
+.list-group-item {
+  display: flex;
+  gap: 8px;
+}
+
+.list-group-item p {
+  margin: 0;
+}
+
+.c1,
+.c2 {
   height: 10px;
   width: 10px;
   background-color: white;
   border-radius: 100px;
- }
+}
 
- .c1{
+.c1 {
   position: absolute;
   top: -15px;
- }
+}
 
- .c2{
+.c2 {
   position: absolute;
   bottom: -15px;
- }
+}
 
 .campo_mitades {
   display: flex;
@@ -267,8 +279,7 @@ button:hover {
   display: flex;
 }
 
-.mitad1_zonas,
-.mitad2 {
+.mitad1_zonas {
   background-color: #ffce73;
   display: flex;
 }
@@ -278,12 +289,12 @@ button:hover {
   border-right-width: 0px;
 }
 
-.mitad1_saque{
+.mitad1_saque {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
 
-.mitad1_saque td{
+.mitad1_saque td {
   border-top: none;
   border-left: none;
   border-right: none;
@@ -291,31 +302,69 @@ button:hover {
 }
 
 .mitad2_zonas {
-  border: 10px solid rgb(255, 255, 255);
   border-left-width: 0px;
 }
 
-.mitad1_zonas td, .mitad2_zonas td{
+.mitad1_zonas td,
+.mitad2_zonas td {
   border-top: none;
   border-left: none;
   border-right: 3px dashed rgb(255, 255, 255, 0.5);
   border-bottom: 3px dashed rgb(255, 255, 255, 0.5);
+  background-color: #ffce73;
+  height: 160px;
 }
 
-.mitad1_zonas tr:last-child td{
+.mitad1_zonas tr:last-child td {
   border-bottom: 0px solid transparent;
 }
 
-.mitad1_zonas tr td:nth-child(2){
+.mitad1_zonas tr td:nth-child(2) {
   border-right: 5px solid rgb(255, 255, 255);
 }
 
-.mitad1_zonas tr td:nth-child(3){
+.mitad1_zonas tr td:nth-child(3) {
   border-right: none;
 }
 
-.mitad2_zonas tr td:nth-child(1){
+.mitad2_zonas tr td:nth-child(1) {
+  border-right-width: 0px;
+}
+
+.mitad2_zonas tr:nth-child(2) {
+  border-top: 10px solid rgb(255, 255, 255);
+}
+
+.mitad2_zonas tr td:nth-child(1) {
   border-right: 5px solid rgb(255, 255, 255);
+}
+
+.fuera {
+  width: 100% !important;
+  height: 75px !important;
+  background-color: rgb(205, 167, 95) !important;
+}
+
+.fuera:hover {
+  background-color: rgb(146, 119, 68) !important;
+}
+
+tr > td.btn-fuera-v > .fuera_v {
+  width: 75px !important;
+  height: 100% !important;
+  background-color: rgb(205, 167, 95) !important;
+  color: rgb(0, 0, 0, 0.3);
+  font-size: 40px;
+  font-weight: 700;
+}
+
+tr > td.btn-fuera-v > .fuera_v:hover {
+  background-color: rgb(146, 119, 68) !important;
+}
+
+.btn-fuera td,
+.zTransp td {
+  height: 80px !important;
 }
 
 .s5,
@@ -357,8 +406,9 @@ button:hover {
   align-items: center;
   background-color: transparent;
   color: rgb(0, 0, 0, 0.3);
-    font-size: 40px;
+  font-size: 40px;
   font-weight: 700;
+  background-color: #ffce73;
 }
 
 .s5:hover,
@@ -384,17 +434,99 @@ button:hover {
 .r9:hover {
   background-color: #ffb836;
 }
+/* END Partido */
 
 /* Equipo */
 .sect_equipo {
-  display: flex;
+  max-width: 75%;
+  display: grid;
+  grid-template-columns: 0.25fr 0.5fr;
   justify-content: center;
-  align-items: center;
-  margin: 2rem;
+  align-items: start;
+  margin: 2rem auto;
   gap: 2rem;
 }
 
-/* END Partido */
+.cont_add {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.add_equipo,
+.add_jugador {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.add_equipo form,
+.add_jugador form {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.add_equipo form div,
+.add_jugador form div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-crear {
+  width: auto;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  background-color: #0d0f28;
+  border: none;
+}
+
+.cont_select {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.select_equipo {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.select_contrario,
+.select_analizar {
+  width: 100%;
+}
+
+.btn-editar-equipo {
+  background-color: #ffb836;
+  color: #0d0f28;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  border: none;
+}
+
+.cont_btn_partido {
+  grid-column: 2 / 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: end;
+}
+
+/* END Equipo */
+
 /* Media Queries */
 /* Tablet */
 @media (max-width: 768px) {
