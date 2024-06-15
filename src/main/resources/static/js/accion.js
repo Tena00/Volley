@@ -41,10 +41,10 @@ function submitAccion() {
     if (zonaSeleccionada === "10" || zonaSeleccionada === "11" || zonaSeleccionada === "12") {
 
         const data = {
-            idPartido: idPartido,
-            idJugador: jugadorSeleccionado,
-            idZona: zonaSeleccionada,
-            idZonaAtaque: zonaAtaqueSeleccionada,
+            idPartido: parseInt(idPartido),
+            idJugador: parseInt(jugadorSeleccionado),
+            idZona: parseInt(zonaSeleccionada),
+            idZonaAtaque: parseInt(zonaAtaqueSeleccionada),
             resultadoAccion: resultadoAccionSeleccionado
         };
 
@@ -69,10 +69,10 @@ function submitAccion() {
     } else {
 
         const data = {
-            idPartido: idPartido,
-            idJugador: jugadorSeleccionado,
-            idZona: zonaSeleccionada,
-            idZonaAtaque: zonaAtaqueSeleccionada,
+            idPartido: parseInt(idPartido),
+            idJugador: parseInt(jugadorSeleccionado),
+            idZona: parseInt(zonaSeleccionada),
+            idZonaAtaque: parseInt(zonaAtaqueSeleccionada),
             resultadoAccion: resultadoAccionSeleccionado
         };
 
