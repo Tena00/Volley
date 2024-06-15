@@ -1,9 +1,26 @@
 let jugadorTitularSeleccionado = null;
 let jugadorSuplenteSeleccionado = null;
 
+// Función para obtener los parámetros de la URL por nombre
+function obtenerParametroURL(nombre) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(nombre);
+}
+
+// Capturar los valores de idPartido e idEquipo de la URL
+const idPartido = obtenerParametroURL('idPartido');
+const idEquipo = obtenerParametroURL('idEquipo');
+
+console.log('ID del partido:', idPartido);
+console.log('ID del equipo:', idEquipo);
+
+// Aquí puedes usar idPartido e idEquipo según lo necesites en tu página siguiente_pagina.html
+// Por ejemplo, mostrar información relacionada con el partido o el equipo, etc.
+
+
 // Función para obtener los jugadores titulares desde la API
 function obtenerJugadoresTitulares() {
-    fetch('http://localhost:8080/jugadores/titulares')
+    fetch(`http://localhost:8080/jugadores/titulares/${idEquipo}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');
@@ -32,7 +49,7 @@ function actualizarBotonesTitulares(data) {
 
 // Función para obtener los jugadores suplentes desde la API
 function obtenerJugadoresSuplentes() {
-    fetch('http://localhost:8080/jugadores/suplentes')
+    fetch(`http://localhost:8080/jugadores/suplentes/${idEquipo}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');
@@ -60,7 +77,7 @@ function actualizarBotonesSuplentes(data) {
 }
 
 // Llamar a ambas funciones para obtener los jugadores (titulares y suplentes) cuando se cargue la página
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     obtenerJugadoresTitulares();
     obtenerJugadoresSuplentes();
 });
@@ -132,7 +149,7 @@ function actualizarEstadoJugador(jugadorId, esTitular) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ titular: esTitular })
+        body: JSON.stringify({titular: esTitular})
     })
         .then(response => {
             if (!response.ok) {

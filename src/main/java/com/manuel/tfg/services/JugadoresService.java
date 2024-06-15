@@ -10,9 +10,9 @@ public interface JugadoresService {
 
     public List<Jugador> todosJugadores();
 
-    public List<Jugador> titularesJugadores();
+    public List<Jugador> titularesJugadores(Integer idEquipo);
 
-    public List<Jugador> suplentesJugadores();
+    public List<Jugador> suplentesJugadores(Integer idEquipo);
 
     public Jugador actualizarEstadoJugador(Integer id, boolean titular);
 

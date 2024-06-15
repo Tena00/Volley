@@ -2,7 +2,7 @@ let resultadoAccionSeleccionado = null;
 let jugadorSeleccionado = null;
 let zonaSeleccionada = null;
 let zonaAtaqueSeleccionada = null;
-const idPartido = 7; // Ajusta este valor según el partido actual
+// Ajusta este valor según el partido actual
 
 // Función para seleccionar el resultado de la acción
 function selectResultado(resultado) {
@@ -38,7 +38,7 @@ function submitAccion() {
     }
     console.log(typeof zonaSeleccionada);
 
-    if( zonaSeleccionada === "10" || zonaSeleccionada === "11" || zonaSeleccionada === "12"){
+    if (zonaSeleccionada === "10" || zonaSeleccionada === "11" || zonaSeleccionada === "12") {
 
         const data = {
             idPartido: idPartido,
@@ -66,7 +66,7 @@ function submitAccion() {
                 alert("Error al registrar el saque.");
                 resetVariables();
             });
-    }else{
+    } else {
 
         const data = {
             idPartido: idPartido,

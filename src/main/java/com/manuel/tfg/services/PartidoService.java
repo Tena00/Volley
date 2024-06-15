@@ -9,7 +9,7 @@ public interface PartidoService {
 
     public List<Partido> todosPartidos();
 
-    public void iniciarPartido(Integer idEquipo);
+    public Integer iniciarPartido(Integer idEquipo);
 
     public List<EstadisticasJugador> estadisticasPartido(Integer idPartido);
 

@@ -13,6 +13,7 @@ import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
 import com.manuel.tfg.services.JugadoresService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,17 +43,29 @@ public class JugadorServiceImpl implements JugadoresService {
     }
 
     @Override
-    public List<Jugador> titularesJugadores() {
+    public List<Jugador> titularesJugadores(Integer idEquipo) {
         List<Jugador> jugadorList;
+        List<Jugador>jugadoresEquipo = new ArrayList<>();
         jugadorList = repositorioJugadores.findAllByTitular();
-        return jugadorList;
+        for (Jugador jugon : jugadorList) {
+            if (jugon.getEquipo().getIdEquipo().equals(idEquipo)){
+                jugadoresEquipo.add(jugon);
+            }
+        }
+        return jugadoresEquipo;
     }
 
     @Override
-    public List<Jugador> suplentesJugadores() {
+    public List<Jugador> suplentesJugadores(Integer idEquipo) {
         List<Jugador> jugadorList;
+        List<Jugador>jugadoresEquipo = new ArrayList<>();
         jugadorList = repositorioJugadores.findAllBySuplentes();
-        return jugadorList;
+        for (Jugador jugon : jugadorList) {
+            if (jugon.getEquipo().getIdEquipo().equals(idEquipo)){
+                jugadoresEquipo.add(jugon);
+            }
+        }
+        return jugadoresEquipo;
     }
 
     public Jugador actualizarEstadoJugador(Integer id, boolean titular) {

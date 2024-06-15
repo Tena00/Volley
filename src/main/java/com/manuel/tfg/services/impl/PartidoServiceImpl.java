@@ -37,14 +37,16 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public void iniciarPartido(Integer idEquipo) {
+    public Integer iniciarPartido(Integer idEquipo) {
         Optional<Equipo> equipo = repositorioEquipos.findById(idEquipo);
         if (!ObjectUtils.isEmpty(equipo)) {
             Equipo equipo1 = equipo.get();
             Partido partido = new Partido();
             partido.setEquipo(equipo1);
             repositorioPartidos.save(partido);
+            return partido.getIdPartido();
         }
+        return null;
     }
 
     @Override

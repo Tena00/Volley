@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/partidos")
@@ -27,9 +29,15 @@ public class PartidoController {
     }
 
     @PostMapping("/iniciarPartido/{id}")
-    public ResponseEntity<String> iniciarPartido(@PathVariable("id") Integer idEquipo) {
-        partidoService.iniciarPartido(idEquipo);
-        return ResponseEntity.ok("{\"mensaje\": \"Partido iniciado.\"}");
+    public ResponseEntity<Map<String, Integer>> iniciarPartido(@PathVariable("id") Integer idEquipo) {
+        Integer idPartido = partidoService.iniciarPartido(idEquipo);
+
+        // Crear un mapa para almacenar los IDs y devolverlo como JSON
+        Map<String, Integer> response = new HashMap<>();
+        response.put("idEquipo", idEquipo);
+        response.put("idPartido", idPartido);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/estadisticas/{id}")

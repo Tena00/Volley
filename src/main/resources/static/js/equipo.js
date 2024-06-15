@@ -157,6 +157,7 @@ function startGame() {
     const selectedButton = document.querySelector('.list-group-item.selected');
     if (!selectedButton) {
         console.error('Debes seleccionar un equipo antes de iniciar el partido.');
+        alert('Debes seleccionar un equipo antes de iniciar el partido.');
         return;
     }
     // Obtener el idEquipo del botón seleccionado
@@ -179,12 +180,26 @@ function startGame() {
         })
         .then(data => {
             console.log('Partido iniciado:', data);
+
+            // Verificar si el idPartido es null o undefined
+            if (data.idPartido == null) {
+                throw new Error('El ID del partido no está disponible.');
+            }
+
+            // Obtener los IDs del partido y el equipo del objeto JSON devuelto
+            const idPartido = data.idPartido;
+            const idEquipo = data.idEquipo;
+
             // Redirigir a la siguiente página después de iniciar el partido
-            window.location.href = 'siguiente_pagina.html';
+            window.location.href = `partido.html?idPartido=${idPartido}&idEquipo=${idEquipo}`;
+
         })
         .catch(error => {
             console.error('Error:', error);
-            // Manejar el error si es necesario
+            // Manejar el error si el idPartido es null o cualquier otro error
+            alert('Error al iniciar el partido: ' + error.message);
         });
 }
+
+
 

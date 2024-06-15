@@ -26,14 +26,14 @@ public class JugadorController {
         return jugadoresService.todosJugadores();
     }
 
-    @GetMapping("/titulares")
-    public List<Jugador> mostrarTitularesJugadores() {
-        return jugadoresService.titularesJugadores();
+    @GetMapping("/titulares/{idEquipo}")
+    public List<Jugador> mostrarTitularesJugadores(@PathVariable Integer idEquipo) {
+        return jugadoresService.titularesJugadores(idEquipo);
     }
 
-    @GetMapping("/suplentes")
-    public List<Jugador> mostrarSuplentesJugadores() {
-        return jugadoresService.suplentesJugadores();
+    @GetMapping("/suplentes/{idEquipo}")
+    public List<Jugador> mostrarSuplentesJugadores(@PathVariable Integer idEquipo) {
+        return jugadoresService.suplentesJugadores(idEquipo);
     }
 
     @PutMapping("/{jugadorId}")
@@ -55,8 +55,7 @@ public class JugadorController {
 
 
     @DeleteMapping("/eliminarJugador/{id}")
-    public ResponseEntity eliminarJugador(@PathVariable(value = "id") Integer jugadorId) {
-
+    public ResponseEntity<String> eliminarJugador(@PathVariable("id") Integer jugadorId) {
         try {
             jugadoresService.eliminarJugador(jugadorId);
             return ResponseEntity.ok("Jugador borrado exitosamente.");
@@ -64,6 +63,7 @@ public class JugadorController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
 
     @PutMapping("/actualizarEquipo/{idJugador}/{idEquipo}")
     public ResponseEntity actualizarEquipo(@PathVariable("idJugador") Integer idJugador, @PathVariable("idEquipo") Integer idEquipo) {

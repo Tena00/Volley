@@ -43,11 +43,11 @@
     <div class="cont_add">
       <div class="add_jugador">
         <h4>Añadir jugador</h4>
-        <form>
+        <form id="jugadorForm">
           <div class="mb-3">
-            <input class="form-control" type="text" placeholder="Nombre del jugador"
+            <input id="nombreJugador" class="form-control" type="text" placeholder="Nombre del jugador"
               aria-label="default input example" />
-            <input class="form-control" type="number" placeholder="Dorsal" aria-label="default input example" />
+            <input id="dorsalJugador" class="form-control" type="number" placeholder="Dorsal" aria-label="default input example" />
           </div>
           <button type="submit" class="btn btn-primary btn-crear">
             Crear
@@ -57,12 +57,12 @@
     </div>
     <div class="cont_jugadores">
       <h4>Editar equipo</h4>
-      <select class="form-select" aria-label="Default">
+      <select id="equipoSelect" class="form-select" aria-label="Default">
         <option selected>Selecciona equipo</option>
         <option value="1">One</option>
       </select>
       <div class="list_jugadores">
-        <ul class="list-group jugadores_group">
+        <ul class="list-group jugadores_group" id="jugadoresList">
           <li class="list-group-item d-flex justify-content-start align-items-center">
             <div class="d-flex gap-3">
               <span class="text-dark fw-bold">14</span>
@@ -172,11 +172,13 @@
             </button>
           </li>
         </ul>
-        <button type="submit" class="btn btn-primary btn-editar-equipo">
+        <button type="submit" class="btn btn-primary btn-editar-equipo" onclick="navigateTo('equipo.html')">
           Volver
         </button>
       </div>
+    </div>
   </section>
+  <script src="js/editarEquipo.js"></script>
   <script src="js/script.js"></script>
 </body>
 
