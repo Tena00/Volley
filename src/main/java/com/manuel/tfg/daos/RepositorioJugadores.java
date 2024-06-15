@@ -14,4 +14,7 @@ public interface RepositorioJugadores extends JpaRepository<Jugador,Integer> {
 
     @Query("SELECT e FROM Jugador e WHERE e.titular= false")
     List<Jugador> findAllBySuplentes();
+
+    @Query("SELECT e FROM Jugador e WHERE e.equipo.idEquipo= ?1")
+    List<Jugador> findAllByEquipo(Integer idEquipo);
 }

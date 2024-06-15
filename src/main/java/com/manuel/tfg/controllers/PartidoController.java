@@ -27,10 +27,9 @@ public class PartidoController {
     }
 
     @PostMapping("/iniciarPartido/{id}")
-    public ResponseEntity iniciarPartido(@PathVariable("id") Integer idEquipo){
+    public ResponseEntity<String> iniciarPartido(@PathVariable("id") Integer idEquipo) {
         partidoService.iniciarPartido(idEquipo);
-        return ResponseEntity.ok("Partido iniciado.");
-
+        return ResponseEntity.ok("{\"mensaje\": \"Partido iniciado.\"}");
     }
 
     @GetMapping("/estadisticas/{id}")

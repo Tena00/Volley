@@ -63,11 +63,20 @@ public class JugadorServiceImpl implements JugadoresService {
 
     @Override
     public void addJugador(Jugador jugador) throws JugadorExistenteException {
-        List<Jugador> listaJugadores = repositorioJugadores.findAll();
+        int titular = 0;
+        List<Jugador> listaJugadores = repositorioJugadores.findAllByEquipo(jugador.getEquipo().getIdEquipo());
         for (Jugador jugon : listaJugadores) {
             if (jugon.getDorsal().equals(jugador.getDorsal())) {
                 throw new JugadorExistenteException("El jugador con dorsal " + jugador.getDorsal() + " ya existe.");
             }
+            if (jugon.isTitular()){
+                titular = titular + 1;
+            }
+        }
+        if (titular < 6) {
+            jugador.setTitular(true);
+        }else{
+            jugador.setTitular(false);
         }
         repositorioJugadores.save(jugador);
     }
