@@ -49,7 +49,7 @@ public class EquipoController {
         try {
             equipoService.eliminarEquipo(equipoId);
             return ResponseEntity.ok("Equipo borrado exitosamente.");
-        }catch (EquipoExistenteExcepcion e){
+        }catch (EquipoExistenteExcepcion | JugadorExistenteException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }

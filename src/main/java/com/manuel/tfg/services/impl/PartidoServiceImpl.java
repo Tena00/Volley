@@ -51,4 +51,9 @@ public class PartidoServiceImpl implements PartidoService {
     public List<EstadisticasJugador> estadisticasPartido(Integer idPartido) {
         return repositorioEstadisticas.findByIdPartido(idPartido);
     }
+
+    @Override
+    public void borrarPartido(Integer idPartido) {
+        repositorioPartidos.deleteById(idPartido);
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/jugadores")
@@ -21,31 +22,45 @@ public class JugadorController {
     }
 
     @GetMapping("")
-    public List<Jugador> mostrarTodosJugadores(){
+    public List<Jugador> mostrarTodosJugadores() {
         return jugadoresService.todosJugadores();
     }
 
-    @PostMapping("/addJugador")
-    public ResponseEntity addJugador(@RequestBody Jugador jugador){
-
-        try {
-
-            jugadoresService.addJugador(jugador);
-            return ResponseEntity.ok("Jugador agregado exitosamente.");
-        } catch (JugadorExistenteException e) {
-
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-
+    @GetMapping("/titulares")
+    public List<Jugador> mostrarTitularesJugadores() {
+        return jugadoresService.titularesJugadores();
     }
 
+    @GetMapping("/suplentes")
+    public List<Jugador> mostrarSuplentesJugadores() {
+        return jugadoresService.suplentesJugadores();
+    }
+
+    @PutMapping("/{jugadorId}")
+    public ResponseEntity<String> actualizarEstadoJugador(@PathVariable("jugadorId") Integer id, @RequestBody Map<String, Boolean> requestBody) {
+        boolean esTitular = requestBody.get("titular");
+        jugadoresService.actualizarEstadoJugador(id, esTitular);
+        return ResponseEntity.ok("Estado del jugador actualizado correctamente.");
+    }
+
+    @PostMapping("/addJugador")
+    public ResponseEntity addJugador(@RequestBody Jugador jugador) {
+        try {
+            jugadoresService.addJugador(jugador);
+            return ResponseEntity.ok().body("{\"message\": \"Jugador agregado exitosamente.\"}");
+        } catch (JugadorExistenteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
     @DeleteMapping("/eliminarJugador/{id}")
-    public ResponseEntity eliminarJugador(@PathVariable(value = "id") Integer jugadorId){
+    public ResponseEntity eliminarJugador(@PathVariable(value = "id") Integer jugadorId) {
 
         try {
             jugadoresService.eliminarJugador(jugadorId);
             return ResponseEntity.ok("Jugador borrado exitosamente.");
-        }catch (JugadorExistenteException e){
+        } catch (JugadorExistenteException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }

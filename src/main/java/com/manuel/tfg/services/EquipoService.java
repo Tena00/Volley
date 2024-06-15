@@ -13,7 +13,7 @@ public interface EquipoService {
 
     public void addEquipo(Equipo equipo) throws EquipoExistenteExcepcion;
 
-    public void eliminarEquipo(Integer id) throws EquipoExistenteExcepcion;
+    public void eliminarEquipo(Integer id) throws EquipoExistenteExcepcion, JugadorExistenteException;
 
     public List<Jugador> obtenerJugadoresPorEquipo(Integer idEquipo);
 }
