@@ -120,9 +120,11 @@ document.querySelectorAll('.s5, .s6, .s9, .z1, .z2, .z3, .z4, .z5, .z6, .z7, .z8
 
 document.querySelectorAll('.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8, .r9').forEach(button => {
     button.addEventListener('click', () => {
-        selectZonaAtaque(button.classList[0].slice(1));
+        selectZonaAtaque(button.dataset.id);
     });
 });
+
+
 
 
 function resetVariables() {

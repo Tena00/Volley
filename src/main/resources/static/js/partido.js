@@ -41,7 +41,7 @@ function actualizarBotonesTitulares(data) {
     data.forEach((jugador, index) => {
         const boton = document.getElementById(`botonJugador${index + 1}`);
         if (boton) {
-            boton.innerText = `${jugador.nombre} ${jugador.dorsal}`;
+            boton.innerText = `${jugador.nombre}  ${jugador.dorsal}`;
             boton.dataset.id = jugador.idJugador; // Guardar el ID del jugador en el botón
         }
     });
@@ -70,7 +70,7 @@ function actualizarBotonesSuplentes(data) {
     data.forEach((jugador, index) => {
         const boton = document.getElementById(`botonSuplente${index + 1}`);
         if (boton) {
-            boton.innerText = `${jugador.nombre} ${jugador.dorsal}`;
+            boton.innerText = `${jugador.nombre}  ${jugador.dorsal}`;
             boton.dataset.id = jugador.idJugador; // Guardar el ID del jugador en el botón
         }
     });

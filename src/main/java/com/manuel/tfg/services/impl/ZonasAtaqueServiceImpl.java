@@ -35,4 +35,10 @@ public class ZonasAtaqueServiceImpl implements ZonaAtaqueService {
         return repositorioEstadisticasAtaque.findAll();
 
     }
+
+    @Override
+    public List<EstadisticasAtaque> mostrarEstadisticasPartido(Integer idPartido) {
+        return repositorioEstadisticasAtaque.findByIdPartido(idPartido);
+
+    }
 }

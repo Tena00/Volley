@@ -12,4 +12,6 @@ public interface ZonaAtaqueService {
     public List<ZonasAtaque> mostrarZonas();
 
     public List<EstadisticasAtaque> mostrarEstadisticas();
+
+    public List<EstadisticasAtaque> mostrarEstadisticasPartido(Integer idPartido);
 }

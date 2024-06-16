@@ -35,6 +35,19 @@ public class EstadisticasJugadorPartidoServiceImpl implements EstadisticasJugado
         return estadisticasJugador;
     }
 
+    public EstadisticasJugador obtenerEstadisticasPorIdJugadorIdPartido(Integer idJugador, Integer idPartido) {
+        List<EstadisticasJugador> estadisticasJugador = estadisticasRepository.findByIdJugador(idJugador);
+        EstadisticasJugador estadisticasJugadorPartido = new EstadisticasJugador();
+        for(EstadisticasJugador estadisticas : estadisticasJugador){
+            if(idPartido.equals(estadisticas.getPartido().getIdPartido())){
+                estadisticasJugadorPartido = estadisticas;
+            }
+        }
+
+        return estadisticasJugadorPartido;
+    }
+
+
     public EstadisticasJugador crearEstadisticas(EstadisticasJugador estadisticas) {
         return estadisticasRepository.save(estadisticas);
     }

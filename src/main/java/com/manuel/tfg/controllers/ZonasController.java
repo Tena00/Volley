@@ -4,6 +4,7 @@ import com.manuel.tfg.daos.model.EstadisticasZona;
 import com.manuel.tfg.daos.model.ZonasCampo;
 import com.manuel.tfg.services.ZonasCampoService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,10 @@ public class ZonasController {
     @GetMapping("/estadisticas")
     public List<EstadisticasZona> mostrarEstadisticasZona(){
         return zonasCampoService.mostrarEstadisticas();
+    }
+
+    @GetMapping("/estadisticas/{idPartido}")
+    public List<EstadisticasZona> mostrarEstadisticasZonaPartido(@PathVariable Integer idPartido){
+        return zonasCampoService.mostrarEstadisticasPartido(idPartido);
     }
 }

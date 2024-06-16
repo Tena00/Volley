@@ -35,6 +35,12 @@ public class EstadisticasController {
         return ResponseEntity.ok().body(estadisticas);
     }
 
+    @GetMapping("{idPartido}/{idJugador}")
+    public ResponseEntity<EstadisticasJugador> obtenerEstadisticasPorIdJugadorIdPartido(@PathVariable Integer idJugador,@PathVariable Integer idPartido ) {
+        EstadisticasJugador estadisticas = estadisticasService.obtenerEstadisticasPorIdJugadorIdPartido(idJugador,idPartido);
+        return ResponseEntity.ok().body(estadisticas);
+    }
+
     @PostMapping("/")
     public ResponseEntity<EstadisticasJugador> crearEstadisticas(@RequestBody EstadisticasJugador estadisticas) {
         EstadisticasJugador nuevaEstadisticas = estadisticasService.crearEstadisticas(estadisticas);

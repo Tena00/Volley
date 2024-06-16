@@ -1,9 +1,11 @@
 package com.manuel.tfg.controllers;
 
 import com.manuel.tfg.daos.model.EstadisticasAtaque;
+import com.manuel.tfg.daos.model.EstadisticasZona;
 import com.manuel.tfg.daos.model.ZonasAtaque;
 import com.manuel.tfg.services.ZonaAtaqueService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +28,10 @@ public class ZonasAtaqueController {
     @GetMapping("/estadisticas")
     public List<EstadisticasAtaque> mostrarEstadisticasZona(){
         return zonasAtaqueService.mostrarEstadisticas();
+    }
+
+    @GetMapping("/estadisticas/{idPartido}")
+    public List<EstadisticasAtaque> mostrarEstadisticasZonaPartido(@PathVariable Integer idPartido){
+        return zonasAtaqueService.mostrarEstadisticasPartido(idPartido);
     }
 }

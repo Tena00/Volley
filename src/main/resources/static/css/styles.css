@@ -71,7 +71,7 @@ button:hover {
 .cont_btn__4 {
   background-color: var(--btn-color);
   border-radius: 64px;
-  background-size: 23%;
+  background-size: 50px;
   background-repeat: no-repeat;
   background-position-x: -10px;
   background-position-y: center;
@@ -152,7 +152,7 @@ button:hover {
 
 .cont_buttons__remates {
   background-color: white;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,9 +163,10 @@ button:hover {
 .remates_rojo,
 .remates_verde,
 .remates_amarillo {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 150px;
+  font-weight: 700;
 }
 
 .remates_rojo {
@@ -178,8 +179,20 @@ button:hover {
 
 .remates_amarillo {
   background-color: rgb(255, 247, 0);
+  color: #000000;
 }
 
+.remates_rojo:hover {
+  background-color: rgb(222, 0, 0);
+}
+
+.remates_verde:hover {
+  background-color: rgb(0, 100, 0);
+}
+
+.remates_amarillo:hover {
+  background-color: rgb(233, 226, 0);
+}
 .cont_buttons__jugadores {
   display: flex;
   flex-direction: column;
@@ -200,6 +213,12 @@ button:hover {
   text-transform: uppercase;
   color: white;
   margin: 0;
+}
+
+.jugadores_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 /* Mitades */
@@ -279,39 +298,85 @@ button:hover {
 }
 
 .mitad1_zonas {
-  background-color: #ffce73;
   display: flex;
 }
 
 .mitad1_zonas {
-  border: 10px solid rgb(255, 255, 255);
+  /* border: 10px solid rgb(255, 255, 255); */
   border-right-width: 0px;
 }
 
-.mitad1_saque {
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-}
-
-.mitad1_saque td {
+/* .mitad1_saque td {
   border-top: none;
   border-left: none;
   border-right: none;
+} */
+
+.btn-fuera-sp {
+}
+/* .mitad1_saque tr:first-child,
+.mitad1_saque tr:last-child {
+  border-right: 0px solid transparent;
+} */
+
+.mitad1_saque tr:nth-child(2) {
+  border-top: 0px solid transparent;
   border-bottom: 3px dashed white;
+}
+
+.mitad1_saque tr:nth-child(3) {
+  border-bottom: 3px dashed white;
+}
+
+.mitad1_saque tr:nth-child(4) {
+  border-bottom: 10px solid transparent;
 }
 
 .mitad2_zonas {
   border-left-width: 0px;
 }
 
+.mitad1_zonas tr,
+.mitad2_zonas tr {
+  background-color: #ffce73;
+}
+
+.mitad1_zonas tr:first-child,
+.mitad1_zonas tr:last-child,
+.mitad2_zonas tr:first-child,
+.mitad2_zonas tr:last-child {
+  background-color: transparent;
+  border: 10px solid rgb(255, 255, 255);
+  border-right-width: 0px;
+  border-left-width: 0px;
+}
+
+.mitad1_zonas tr:first-child,
+.mitad2_zonas tr:first-child {
+  border-top-width: 0px;
+}
+
+.mitad1_zonas tr:last-child,
+.mitad2_zonas tr:last-child {
+  border-bottom-width: 0px;
+}
+
+.mitad1_zonas tr:nth-child(2),
+.mitad1_zonas tr:nth-child(3),
+.mitad1_zonas tr:nth-child(4) {
+  border-left: 10px solid white;
+}
+
 .mitad1_zonas td,
 .mitad2_zonas td {
-  border-top: none;
+  border-bottom: 3px dashed rgb(255, 255, 255, 0.5);
   border-left: none;
   border-right: 3px dashed rgb(255, 255, 255, 0.5);
-  border-bottom: 3px dashed rgb(255, 255, 255, 0.5);
-  background-color: #ffce73;
   height: 160px;
+}
+
+.mitad1_zonas tr:last-child td {
+  border-bottom: 0px f transparent;
 }
 
 .mitad1_zonas tr:last-child td {
@@ -326,8 +391,13 @@ button:hover {
   border-right: none;
 }
 
-.mitad2_zonas tr td:nth-child(1) {
-  border-right-width: 0px;
+.mitad2_zonas .btn-fuera td:nth-child(1) {
+  border-right: 0px;
+  border-bottom: 0px;
+}
+
+.mitad2_zonas .btn-fuera td:nth-child(2) {
+  border-bottom: 0px;
 }
 
 .mitad2_zonas tr:nth-child(2) {
@@ -336,6 +406,20 @@ button:hover {
 
 .mitad2_zonas tr td:nth-child(1) {
   border-right: 5px solid rgb(255, 255, 255);
+}
+
+.mitad2_zonas td:last-child,
+.mitad2_zonas td:nth-child(3) {
+  border-right: 10px solid rgb(255, 255, 255);
+}
+
+td.btn-fuera-v {
+  border-bottom: 0 !important;
+  border-right: 0 !important;
+}
+
+.btn-fuera-sp:first-child {
+  border-bottom: 10px solid transparent;
 }
 
 .fuera {
@@ -361,9 +445,19 @@ tr > td.btn-fuera-v > .fuera_v:hover {
   background-color: rgb(146, 119, 68) !important;
 }
 
+.btn-fuera-v {
+  border-right: 0;
+}
+
 .btn-fuera td,
+.btn-fuera-sp td,
 .zTransp td {
   height: 80px !important;
+}
+
+.btn-fuera-sp td {
+  border: none;
+  background-color: transparent;
 }
 
 .s5,
@@ -433,6 +527,16 @@ tr > td.btn-fuera-v > .fuera_v:hover {
 .r9:hover {
   background-color: #ffb836;
 }
+
+.campo_buttons__inferior {
+  display: flex;
+  gap: 1rem;
+}
+
+.modal-dialog {
+  min-width: 650px;
+}
+
 /* END Partido */
 
 /* Equipo */

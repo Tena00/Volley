@@ -51,10 +51,23 @@ function obtenerZonasAtaque() {
 
 // Función para actualizar los botones con los nombres de las zonas del campo
 function actualizarBotonesZonasAtaque(data) {
+    const numerosCoincidentes = [10, 11, 12];
     data.forEach((zonasAtaque, index) => {
         const boton = document.getElementById(`zonaAtaque${index + 1}`);
         if (boton) {
             boton.dataset.id = zonasAtaque.idZonaAtaque; // Guardar el ID de la zona en el botón
+        }
+        const out = document.getElementById(`out${index + 1}`);
+        console.log(`Elemento out${index + 1}:`, out); // Verificar si el elemento out existe
+
+        if (out) {
+            console.log(`ID de zona ataque: ${zonasAtaque.idZonaAtaque}`);
+            if (numerosCoincidentes.includes(zonasAtaque.idZonaAtaque)) {
+                out.dataset.id = zonasAtaque.idZonaAtaque; // Guardar el ID de la zona en el botón
+                console.log(`ID ${zonasAtaque.idZonaAtaque} encontrado y asignado a out${index + 1}`);
+            } else {
+                console.log(`ID ${zonasAtaque.idZonaAtaque} no está en numerosCoincidentes`);
+            }
         }
     });
 }

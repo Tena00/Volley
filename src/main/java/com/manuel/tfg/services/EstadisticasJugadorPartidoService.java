@@ -12,6 +12,8 @@ public interface EstadisticasJugadorPartidoService {
 
    public List<EstadisticasJugador> obtenerEstadisticasPorIdJugador(Integer idJugador);
 
+    public EstadisticasJugador obtenerEstadisticasPorIdJugadorIdPartido(Integer idJugador, Integer idPartido);
+
     public EstadisticasJugador crearEstadisticas(EstadisticasJugador estadisticas);
 
     public EstadisticasJugador actualizarEstadisticas(Integer id, EstadisticasJugador estadisticas);

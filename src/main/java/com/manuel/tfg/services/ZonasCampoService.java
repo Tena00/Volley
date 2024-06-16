@@ -10,4 +10,6 @@ public interface ZonasCampoService {
     public List<ZonasCampo> mostrarZonas();
 
     public List<EstadisticasZona> mostrarEstadisticas();
+
+    public List<EstadisticasZona> mostrarEstadisticasPartido(Integer idPartido);
 }

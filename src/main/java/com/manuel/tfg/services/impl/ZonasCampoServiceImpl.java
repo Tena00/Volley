@@ -30,4 +30,9 @@ public class ZonasCampoServiceImpl implements ZonasCampoService {
         return repositorioEstadisticasZona.findAll();
 
     }
+    @Override
+    public List<EstadisticasZona> mostrarEstadisticasPartido(Integer idPartido) {
+        return repositorioEstadisticasZona.findByIdPartido(idPartido);
+
+    }
 }

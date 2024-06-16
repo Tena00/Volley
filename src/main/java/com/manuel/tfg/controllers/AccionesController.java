@@ -26,7 +26,7 @@ public class AccionesController {
             Integer idZonaAtaque = (Integer) body.get("idZonaAtaque");
             String resultadoAccion = (String) body.get("resultadoAccion");
 
-            accionesService.realizarSaque(idPartido, idJugador, idZona, idZonaAtaque, resultadoAccion);
+            accionesService.realizarAccion(idPartido, idJugador, idZona, idZonaAtaque, resultadoAccion);
 
             Map<String, String> response = new HashMap<>();
             response.put("message", "Se ha registrado bien la acción.");
