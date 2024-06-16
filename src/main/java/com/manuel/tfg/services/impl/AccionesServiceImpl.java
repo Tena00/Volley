@@ -41,6 +41,8 @@ public class AccionesServiceImpl implements AccionesService {
         Optional<ZonasCampo> zonasCampoOp = repositorioZonas.findById(idZona);
         Optional<ZonasAtaque> zonasAtaqueOp = repositorioZonasAtaque.findById(idZonaAtaque);
         Acciones accionesPartido = new Acciones();
+        accionesPartido.setEstadisticasZona(estadisticasZona);
+        accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
         if (ObjectUtils.isEmpty(estadisticasJugador)) {
             estadisticasJugador = new EstadisticasJugador();
             inicializarEstadisticas(estadisticasJugador);
@@ -240,6 +242,8 @@ public class AccionesServiceImpl implements AccionesService {
         Optional<ZonasCampo> zonasCampoOp = repositorioZonas.findById(idZona);
         Optional<ZonasAtaque> zonasAtaqueOp = repositorioZonasAtaque.findById(idZonaAtaque);
         Acciones accionesPartido = new Acciones();
+        accionesPartido.setEstadisticasZona(estadisticasZona);
+        accionesPartido.setEstadisticasAtaque(estadisticasAtaque);
         if (ObjectUtils.isEmpty(estadisticasJugador)) {
             estadisticasJugador = new EstadisticasJugador();
             inicializarEstadisticasSaque(estadisticasJugador);
