@@ -1,28 +1,31 @@
 // Objeto de mapeo de nombres de zona
 const zonaMapping = {
-    "Zona de saque 1": "R10",
-    "Zona de saque 5": "R11",
-    "Zona de saque 6": "R12",
-    "Zona 1": "R1",
-    "Zona 2": "R2",
-    "Zona 3": "R3",
-    "Zona 4": "R4",
-    "Zona 5": "R5",
-    "Zona 6": "R6",
-    "Zona 7": "R7",
-    "Zona 8": "R8",
-    "Zona 9": "R9",
+    "Zona de saque 1": "10",
+    "Zona de saque 5": "11",
+    "Zona de saque 6": "12",
+    "Zona 1": "1",
+    "Zona 2": "2",
+    "Zona 3": "3",
+    "Zona 4": "4",
+    "Zona 5": "5",
+    "Zona 6": "6",
+    "Zona 7": "7",
+    "Zona 8": "8",
+    "Zona 9": "9",
     "TOTAL": "TOTAL"
 };
 
 // Función para cargar estadísticas
 async function cargarEstadisticas(idPartido) {
     try {
-        const response = await fetch(`http://localhost:8080/zonasAtaque/estadisticas/${idPartido}`);
+        const response = await fetch(`http://localhost:8080/zonas/estadisticas/${idPartido}`);
         const data = await response.json();
 
+        console.log('Datos recibidos de la API:', data);
+
+
         data.forEach(estadistica => {
-            const nombreZonaDB = estadistica.idZonaAtaque.nombreZona; // Nombre de zona según la base de datos
+            const nombreZonaDB = estadistica.idZona.nombreZona; // Nombre de zona según la base de datos
             const nombreZonaHTML = Object.keys(zonaMapping).find(key => zonaMapping[key] === nombreZonaDB);
 
             if (!nombreZonaHTML) {

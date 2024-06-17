@@ -33,6 +33,12 @@ public class EstadisticasZona {
     @Column(name = "Saques_Puntos")
     private int saquesPuntos;
 
+
+    @ManyToOne
+    @JoinColumn(name = "ID_Jugador")
+    private Jugador jugador;
+
+
     public EstadisticasZona() {
     }
 
@@ -107,5 +113,13 @@ public class EstadisticasZona {
 
     public void setPartido(Partido partido) {
         this.partido = partido;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 }

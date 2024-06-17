@@ -33,4 +33,9 @@ public class ZonasController {
     public List<EstadisticasZona> mostrarEstadisticasZonaPartido(@PathVariable Integer idPartido){
         return zonasCampoService.mostrarEstadisticasPartido(idPartido);
     }
+
+//    @GetMapping("/estadisticas/jugador/{idPartido}/{idJugador}/{idZona}")
+//    public List<EstadisticasZona> mostrarEstadisticasZonaPartidoJugador(@PathVariable Integer idPartido,@PathVariable Integer idJugador,@PathVariable Integer idZona){
+//        return zonasCampoService.mostrarEstadisticasJugadorPartido(idPartido,idJugador,idZona);
+//    }
 }
