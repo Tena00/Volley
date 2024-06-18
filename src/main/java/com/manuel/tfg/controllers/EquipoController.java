@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = "https://db5015951811.hosting-data.io")
 @RestController
 @RequestMapping("/equipos")
 public class EquipoController {
