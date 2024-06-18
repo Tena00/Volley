@@ -120,9 +120,14 @@ button:hover {
 .sect_nav {
   display: flex;
   justify-content: center;
-  padding: 2rem 0 5rem;
+  padding: 2rem 0 2rem;
 }
 
+.nav_partido {
+  display: flex;
+  justify-content: space-around !important;
+  gap: 0 4rem;
+}
 .cont_nav__logo img {
   width: 150px;
 }
@@ -136,7 +141,6 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0 4rem;
 }
 
 .cont_nav__btn {
