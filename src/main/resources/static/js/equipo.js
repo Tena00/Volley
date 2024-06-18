@@ -3,7 +3,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 
     const nombreEquipo = document.getElementById('nombreEquipo').value;
 
-    fetch('http://db5015951811.hosting-data.io/equipos/addEquipo', {
+    fetch('http://localhost:8080/equipos/addEquipo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('http://db5015951811.hosting-data.io/equipos/todos')
+        fetch('http://localhost:8080/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('http://db5015951811.hosting-data.io/equipos/todos')
+        fetch('http://localhost:8080/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const selectAnalizar = document.querySelector('.select_analizar');
@@ -130,7 +130,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     };
 
     // Enviar solicitud POST
-    fetch('http://db5015951811.hosting-data.io/jugadores/addJugador', {
+    fetch('http://localhost:8080/jugadores/addJugador', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -165,7 +165,7 @@ function startGame() {
     console.log('Iniciando partido para el equipo con ID:', idEquipo);
 
     // Realizar la solicitud POST usando fetch
-    fetch(`https://db5015951811.hosting-data.io/partidos/iniciarPartido/${idEquipo}`, {
+    fetch(`http://localhost:8080/partidos/iniciarPartido/${idEquipo}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -199,6 +199,7 @@ function startGame() {
             // Manejar el error si el idPartido es null o cualquier otro error
             alert('Error al iniciar el partido: ' + error.message);
         });
+
 }
 
 

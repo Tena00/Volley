@@ -43,19 +43,32 @@ public class EquipoController {
 
     }
 
-    @DeleteMapping("/eliminarEquipo/{id}")
-    public ResponseEntity eliminarEquipo(@PathVariable(value = "id") Integer equipoId){
-
+    @DeleteMapping("/eliminarEquipo/{idEquipo}")
+    public ResponseEntity eliminarEquipo(@PathVariable("idEquipo") Integer idEquipo) {
         try {
-            equipoService.eliminarEquipo(equipoId);
+            equipoService.eliminarEquipo(idEquipo);
             return ResponseEntity.ok("Equipo borrado exitosamente.");
-        }catch (EquipoExistenteExcepcion | JugadorExistenteException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("El ID del equipo debe ser un número entero.");
+        } catch (EquipoExistenteExcepcion | JugadorExistenteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
     }
 
     @GetMapping("/{idEquipo}/jugadores")
-    public List<Jugador> obtenerJugadoresPorEquipo(@PathVariable Integer idEquipo) {
-        return equipoService.obtenerJugadoresPorEquipo(idEquipo);
+    public ResponseEntity<List<Jugador>> obtenerJugadoresPorEquipo(@PathVariable("idEquipo") Integer idEquipo) {
+        if (idEquipo == null || idEquipo <= 0) {
+            return ResponseEntity.badRequest().build(); // Devuelve un error 400 si idEquipo no es válido
+        }
+
+        List<Jugador> jugadores = equipoService.obtenerJugadoresPorEquipo(idEquipo);
+
+        if (jugadores == null || jugadores.isEmpty()) {
+            return ResponseEntity.notFound().build(); // Devuelve un error 404 si no se encontraron jugadores
+        }
+
+        return ResponseEntity.ok(jugadores);
     }
 }

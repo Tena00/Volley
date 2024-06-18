@@ -37,14 +37,16 @@
       <div class="cont_add">
         <div class="add_jugador">
           <h4>Añadir jugador</h4>
-          <form>
+          <form id="jugadorForm">
             <div class="mb-3">
               <input
+                      id="nombreJugador"
                 class="form-control"
                 type="text"
                 placeholder="Nombre del jugador"
                 aria-label="default input example" />
               <input
+                      id="dorsalJugador"
                 class="form-control"
                 type="number"
                 placeholder="Dorsal"
@@ -58,12 +60,12 @@
       </div>
       <div class="cont_jugadores">
         <h4>Editar equipo</h4>
-        <select class="form-select" aria-label="Default">
+        <select id="equipoSelect" class="form-select" aria-label="Default">
           <option selected>Selecciona equipo</option>
           <option value="1">One</option>
         </select>
-        <div class="list_jugadores">
-          <ul class="list-group jugadores_group">
+        <div  class="list_jugadores">
+          <ul id="jugadoresList" class="list-group jugadores_group">
             <li
               class="list-group-item d-flex justify-content-start align-items-center">
               <div class="d-flex gap-3">
@@ -185,12 +187,13 @@
               </button>
             </li>
           </ul>
-          <button type="submit" class="btn btn-primary btn-editar-equipo">
+          <button type="submit" class="btn btn-primary btn-editar-equipo" onclick="navigateTo('index.html')">
             Volver
           </button>
         </div>
       </div>
     </section>
+    <script src="js/editarEquipo.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(jugadores => {
                 const jugadoresList = document.getElementById('jugadoresList');
-
+                console.log(jugadoresList)
                 // Limpiar contenido actual de la lista de jugadores
                 jugadoresList.innerHTML = '';
 
@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('Error al agregar el jugador:', error.message);
             });
+        location.reload();
     });
 });
 

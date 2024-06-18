@@ -161,3 +161,10 @@ function actualizarEstadoJugador(jugadorId, esTitular) {
             console.error('Error al actualizar el estado del jugador:', error);
         });
 }
+// Redirigir a la siguiente página con parámetros en la URL
+function irASiguientePantalla() {
+    const idPartido = obtenerParametroURL('idPartido');
+    const idEquipo = obtenerParametroURL('idEquipo');
+    window.location.href = `pizarra.html?idPartido=${idPartido}&idEquipo=${idEquipo}`;
+}
+
