@@ -36,11 +36,6 @@
         onclick="navigateTo('index.html')">
         Home
       </button> -->
-          <button
-            class="cont_btn__1 btn_partido"
-            onclick="navigateTo('partido.html')">
-            Volver al partido
-          </button>
         </div>
       </div>
     </section>
@@ -172,25 +167,34 @@
       </div>
     </div>
     <div class="cont_buttons__pizarra">
-      <div
-        onclick="change_color(this)"
-        style="background: red"
-        class="stroke-color"></div>
-      <div
-        onclick="change_color(this)"
-        style="background: black"
-        class="stroke-color"></div>
-      <div
-        onclick="change_color(this)"
-        style="background: blue"
-        class="stroke-color"></div>
-      <input
-        type="range"
-        min="1"
-        max="100"
-        oninput="stroke_width = this.value" />
-      <button class="btn-lg btn btn btn-dark rotacion btn-lg" onclick="Clear()">
-        Clear
+      <div class="cont_buttons__edit_pizarra">
+        <div
+          onclick="change_color(this)"
+          style="background: red"
+          class="stroke-color"></div>
+        <div
+          onclick="change_color(this)"
+          style="background: black"
+          class="stroke-color"></div>
+        <div
+          onclick="change_color(this)"
+          style="background: blue"
+          class="stroke-color"></div>
+        <input
+          type="range"
+          min="1"
+          max="100"
+          oninput="stroke_width = this.value" />
+        <button
+          class="btn-lg btn btn btn-dark rotacion btn-lg"
+          onclick="Clear()">
+          Clear
+        </button>
+      </div>
+      <button
+        class="cont_btn__1 btn_partido"
+        onclick="navigateTo('partido.html')">
+        Volver al partido
       </button>
     </div>
     <script src="js/zonas.js"></script>
