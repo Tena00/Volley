@@ -1,5 +1,5 @@
 let canvas = document.getElementById("canvas");
-canvas.width = 1169;
+canvas.width = 1170;
 canvas.height = 655;
 let context = canvas.getContext("2d");
 context.fillStyle = "transparent";
