@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/375bc5705f.js"
+      crossorigin="anonymous"></script>
+    <title>Scout Board</title>
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <!-- END Bootstrap -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- END Custom CSS -->
+  </head>
+  <body>
+    <section class="sect_nav">
+      <div class="cont_nav">
+        <div class="cont_logo cont_nav__logo">
+          <a href="./index.html"
+            ><img src="./imagenes/logo-scout-board.svg" alt="Scout Board Logo"
+          /></a>
+        </div>
+        <div class="cont_nav__btn">
+          <!-- <button
+        class="cont_btn__1 btn_partido"
+        onclick="navigateTo('index.html')">
+        Home
+      </button> -->
+          <button
+            class="cont_btn__1 btn_partido"
+            onclick="navigateTo('partido.html')">
+            Volver al partido
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="pizarra">
+      <canvas id="canvas"></canvas>
+    </div>
+    <div id="" class="campo_mitades pizarra">
+      <div class="mitad1 select">
+        <table class="mitad1_saque">
+          <tbody>
+            <tr class="btn-fuera-sp">
+              <td></td>
+            </tr>
+            <tr>
+              <td><button id="zonaCampo10" class="s5 select">S5</button></td>
+            </tr>
+            <tr>
+              <td><button id="zonaCampo11" class="s6">S6</button></td>
+            </tr>
+            <tr>
+              <td><button id="zonaCampo12" class="s9">S1</button></td>
+            </tr>
+            <tr class="btn-fuera-sp">
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mitad1_zonas">
+          <tbody>
+            <tr class="btn-fuera-sp">
+              <td colspan="3"></td>
+            </tr>
+            <tr>
+              <td>
+                <button id="zonaCampo5" class="z5">5</button>
+              </td>
+              <td>
+                <button id="zonaCampo9" class="z9">9</button>
+              </td>
+              <td>
+                <button id="zonaCampo4" class="z4">4</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="zonaCampo6" class="z6">6</button>
+              </td>
+              <td>
+                <button id="zonaCampo8" class="z8">8</button>
+              </td>
+              <td>
+                <button id="zonaCampo3" class="z3">3</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="zonaCampo1" class="z1">1</button>
+              </td>
+              <td>
+                <button id="zonaCampo7" class="z7">7</button>
+              </td>
+              <td>
+                <button id="zonaCampo2" class="z2">2</button>
+              </td>
+            </tr>
+            <tr class="btn-fuera-sp">
+              <td colspan="3"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mitad_linea">
+        <div class="c1"></div>
+        <div class="linea"></div>
+        <div class="c2"></div>
+      </div>
+      <div class="mitad2 select">
+        <table class="mitad2_zonas">
+          <tbody>
+            <tr class="btn-fuera">
+              <td colspan="4">
+                <button id="out" class="fuera r2">OUT</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="zonaAtaque2" class="r2">Z2</button>
+              </td>
+              <td>
+                <button id="zonaAtaque7" class="r7">Z7</button>
+              </td>
+              <td>
+                <button id="zonaAtaque1" class="r1">Z1</button>
+              </td>
+              <td rowspan="3" class="btn-fuera-v">
+                <button id="out" class="fuera_v">O<br />U<br />T</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="zonaAtaque3" class="r3">Z3</button>
+              </td>
+              <td>
+                <button id="zonaAtaque8" class="r8">Z8</button>
+              </td>
+              <td>
+                <button id="zonaAtaque6" class="r6">Z6</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="zonaAtaque4" class="r4">Z4</button>
+              </td>
+              <td>
+                <button id="zonaAtaque9" class="r9">Z9</button>
+              </td>
+              <td>
+                <button id="zonaAtaque5" class="r5">Z5</button>
+              </td>
+            </tr>
+            <tr class="btn-fuera">
+              <td colspan="4">
+                <button id="out" class="fuera r2">OUT</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="cont_buttons__pizarra">
+      <div
+        onclick="change_color(this)"
+        style="background: red"
+        class="stroke-color"></div>
+      <div
+        onclick="change_color(this)"
+        style="background: black"
+        class="stroke-color"></div>
+      <div
+        onclick="change_color(this)"
+        style="background: blue"
+        class="stroke-color"></div>
+      <input
+        type="range"
+        min="1"
+        max="100"
+        oninput="stroke_width = this.value" />
+      <button class="btn-lg btn btn btn-dark rotacion btn-lg" onclick="Clear()">
+        Clear
+      </button>
+    </div>
+    <script src="js/zonas.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/partido.js"></script>
+    <script src="js/accion.js"></script>
+    <script src="js/canvas.js"></script>
+  </body>
+</html>
