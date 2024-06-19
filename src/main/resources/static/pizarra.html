@@ -202,5 +202,11 @@
     <script src="js/partido.js"></script>
     <script src="js/accion.js"></script>
     <script src="js/canvas.js"></script>
+    <script>
+      if (localStorage.getItem("authenticated") !== "true") {
+        // Redirigir al login si no está autenticado
+        window.location.href = "login.html";
+      }
+    </script>
   </body>
 </html>
