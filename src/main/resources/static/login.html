@@ -29,35 +29,21 @@
           /></a>
         </div>
         <div class="cont_btn">
-          <button
-            class="cont_btn__1 btn-grande"
-            onclick="navigateTo('crearPartido.html')">
-            Crear partido
-          </button>
-          <button
-            class="cont_btn__2 btn-grande"
-            onclick="navigateTo('crearEquipo.html')">
-            Añadir equipo
-          </button>
-          <button
-            class="cont_btn__5 btn-grande"
-            onclick="navigateTo('crearJugadores.html')">
-            Añadir jugador
-          </button>
-          <button
-            class="cont_btn__4 btn-grande"
-            onclick="navigateTo('pizarra.html')">
-            Pizarra
-          </button>
+          <form>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Introduce la contraseña" />
+            </div>
+            <button class="btn btn-primary" id="loginButton">Login</button>
+          </form>
+          <div class="error" id="error-message"></div>
         </div>
       </div>
     </section>
     <script src="js/script.js"></script>
-    <script>
-      if (localStorage.getItem("authenticated") !== "true") {
-        // Redirigir al login si no está autenticado
-        window.location.href = "login.html";
-      }
-    </script>
+    <script src="js/login.js"></script>
   </body>
 </html>
