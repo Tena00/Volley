@@ -43,6 +43,28 @@ public class ZonasCampoServiceImpl implements ZonasCampoService {
     public List<EstadisticasZona> mostrarEstadisticasPartido(Integer idPartido) {
         return repositorioEstadisticasZona.findByIdPartido(idPartido);
     }
+    @Override
+    public List<EstadisticasZona> mostrarEstadisticasPartidoJugadores(Integer idPartido, Integer idJugador) {
+        return repositorioEstadisticasZona.findByEstadisticasJugadorPartido(idPartido, idJugador);
+    }
+
+
+    @Override
+    public int[] mostrarEstadisticasTotalesPartido(Integer idPartido) {
+        List<EstadisticasZona> estadisticasZonaList = repositorioEstadisticasZona.findByIdPartido(idPartido);
+        int[] totalesPartido = new int[4];
+        int rematesFallados = 0;
+        int saquesFallados = 0;
+        for (EstadisticasZona zona : estadisticasZonaList) {
+            rematesFallados = zona.getRematesTotal() - (zona.getRematesPuntos() + zona.getRematesBloqueados());
+            saquesFallados = zona.getSaquesTotal() - zona.getSaquesPuntos();
+            totalesPartido[0] = totalesPartido[0] + (zona.getRematesTotal() + zona.getSaquesTotal());
+            totalesPartido[1] = totalesPartido[1] + (zona.getRematesPuntos() + zona.getRematesPuntos());
+            totalesPartido[2] = totalesPartido[2] + zona.getRematesBloqueados();
+            totalesPartido[3] = totalesPartido[3] + (rematesFallados + saquesFallados);
+        }
+        return totalesPartido;
+    }
 
 //    public List<EstadisticasZona> mostrarEstadisticasZonaPartidoJugador(Integer idPartido, Integer idJugador, Integer idZona){
 //        EstadisticasZona estadisticasZonas = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido,idZona);

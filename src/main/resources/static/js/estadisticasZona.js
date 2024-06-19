@@ -15,58 +15,96 @@ const zonaMapping = {
     "TOTAL": "TOTAL"
 };
 
-// Función para cargar estadísticas
 async function cargarEstadisticas(idPartido) {
     try {
         const response = await fetch(`http://localhost:8080/zonas/estadisticas/${idPartido}`);
         const data = await response.json();
 
-        console.log('Datos recibidos de la API:', data);
+        console.log("Datos recibidos de la API:", data);
 
-
-        data.forEach(estadistica => {
-            const nombreZonaDB = estadistica.idZona.nombreZona; // Nombre de zona según la base de datos
-            const nombreZonaHTML = Object.keys(zonaMapping).find(key => zonaMapping[key] === nombreZonaDB);
+        // Iterar sobre cada estadística recibida
+        for (const estadistica of data) {
+            const nombreZonaDB = estadistica.idZona.nombreZona;
+            const nombreZonaHTML = Object.keys(zonaMapping).find(
+                (key) => zonaMapping[key] === nombreZonaDB
+            );
 
             if (!nombreZonaHTML) {
-                console.warn(`No se encontró la zona correspondiente para ${nombreZonaDB}`);
-                return; // Salir del bucle si no se encuentra el nombre de zona correspondiente
+                console.warn(
+                    `No se encontró la zona correspondiente para ${nombreZonaDB}`
+                );
+                continue; // Saltar al siguiente si no se encuentra el nombre de zona correspondiente
             }
 
-            const tableRows = document.querySelectorAll('tbody tr');
+            const tableRows = document.querySelectorAll("tbody tr");
 
-            tableRows.forEach(row => {
-                const th = row.querySelector('th[scope="row"]');
-                if (th && th.textContent.trim() === nombreZonaHTML) {
-                    const cells = row.querySelectorAll('td');
-                    const equipo = estadistica.partido.equipo.nombreEquipo;
+            // Iterar sobre cada fila de la tabla
+            for (const row of tableRows) {
+                const th = row.querySelector("th[scope='row']");
+                if (!th) continue; // Saltar al siguiente si no hay encabezado de fila
 
-                    cells[0].textContent = estadistica.saquesTotal || '-';
-                    cells[1].textContent = estadistica.saquesPuntos || '-';
-                    cells[2].textContent = estadistica.rematesTotal || '-';
-                    cells[3].textContent = estadistica.rematesBloqueados || '-';
+                const normalizedThText = th.textContent.trim().toLowerCase();
+                const normalizedNombreZonaHTML = nombreZonaHTML.toLowerCase();
+
+                // Verificar si la zona HTML coincide con el encabezado de fila
+                if (normalizedThText === normalizedNombreZonaHTML) {
+                    // Obtener las celdas de la fila actual
+                    const cells = row.querySelectorAll("td");
+
+                    // Calcular remates fallados
+                    const rematesFallados =
+                        estadistica.rematesTotal -
+                        (estadistica.rematesPuntos + estadistica.rematesBloqueados);
+
+                    // Actualizar las celdas con los datos correspondientes
+                    cells[0].textContent = rematesFallados || "-";
+                    cells[1].textContent = estadistica.rematesBloqueados || "-";
+                    cells[2].textContent = estadistica.rematesPuntos || "-";
+                    cells[3].textContent = estadistica.rematesTotal || "-";
+
+                    // Verificar si es la zona "TOTAL"
+                    if (normalizedThText === "total") {
+                        try {
+                            // Realizar la llamada para obtener datos adicionales de "TOTAL"
+                            const totalDataResponse = await fetch(`http://localhost:8080/zonas/estadisticasTotal/${idPartido}`);
+                            const totalData = await totalDataResponse.json();
+
+                            console.log("Datos de TOTAL recibidos:", totalData);
+
+                            // Actualizar las celdas con los datos de "TOTAL"
+                            cells[4].textContent = totalData[0] || "-";
+                            cells[5].textContent = totalData[1] || "-";
+                            cells[6].textContent = totalData[2] || "-";
+                            cells[7].textContent = totalData[3] || "-";
+                        } catch (error) {
+                            console.error("Error al obtener los datos de TOTAL:", error);
+                        }
+                    }
                 }
-            });
-        });
+            }
+        }
     } catch (error) {
-        console.error('Error al cargar las estadísticas:', error);
+        console.error("Error al cargar las estadísticas:", error);
     }
 }
-
 
 window.onload = function () {
     // Obtener los parámetros de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    const idPartido = urlParams.get('idPartido');
+    const idPartido = urlParams.get("idPartido");
 
     if (idPartido) {
         // Llamar a cargarEstadisticas con idPartido si está presente en la URL
         cargarEstadisticas(idPartido);
     } else {
-        console.error('No se encontró el parámetro idPartido en la URL.');
+        console.error("No se encontró el parámetro idPartido en la URL.");
     }
 };
 
-function startGame(){
+function estadisticas() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idPartido = urlParams.get("idPartido");
+
+    // Carga las estadísticas (asumiendo la lógica existente)
     cargarEstadisticas(idPartido);
 }

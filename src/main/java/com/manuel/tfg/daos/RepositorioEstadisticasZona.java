@@ -15,4 +15,9 @@ public interface RepositorioEstadisticasZona extends JpaRepository<EstadisticasZ
 
     @Query("SELECT e FROM EstadisticasZona e WHERE e.partido.idPartido = ?1")
     List<EstadisticasZona> findByIdPartido(Integer idPartido);
+
+    @Query("SELECT e FROM EstadisticasZona e WHERE e.partido.idPartido = ?1 AND e.jugador.idJugador = ?2")
+    List<EstadisticasZona> findByEstadisticasJugadorPartido(Integer idPartido, Integer idJugador);
+
+
 }

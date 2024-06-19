@@ -329,7 +329,7 @@
             class="cont_btn__3 btn_partido"
             data-bs-toggle="modal"
             data-bs-target="#statsJugModal"
-            onclick="startGame()">
+          >
             Estadísticas por jugador
           </button>
           <!-- Modal -->
@@ -401,91 +401,91 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <th scope="row">Zona de saque 1</th>
+                                <th scope="row" data-zona="Zona de saque 1">Zona de saque 1</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona de saque 5</th>
+                                <th scope="row" data-zona="Zona de saque 5">Zona de saque 5</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona de saque 6</th>
+                                <th scope="row" data-zona="Zona de saque 6">Zona de saque 6</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 1</th>
+                                <th scope="row" data-zona="Zona 1">Zona 1</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 2</th>
+                                <th scope="row" data-zona="Zona 2">Zona 2</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 3</th>
+                                <th scope="row" data-zona="Zona 3">Zona 3</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 4</th>
+                                <th scope="row" data-zona="Zona 4">Zona 4</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 5</th>
+                                <th scope="row" data-zona="Zona 5">Zona 5</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 6</th>
+                                <th scope="row" data-zona="Zona 6">Zona 6</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 7</th>
+                                <th scope="row" data-zona="Zona 7">Zona 7</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 8</th>
+                                <th scope="row" data-zona="Zona 8">Zona 8</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">Zona 9</th>
+                                <th scope="row" data-zona="Zona 9">Zona 9</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row">TOTAL</th>
+                                <th scope="row" data-zona="TOTAL">TOTAL</th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
@@ -506,7 +506,7 @@
             class="cont_btn__3 btn_partido"
             data-bs-toggle="modal"
             data-bs-target="#statsModal"
-            onclick="startGame()">
+            onclick="estadisticas()">
             Estadísticas
           </button>
           <!-- Modal -->
@@ -638,7 +638,7 @@
             </div>
           </div>
 
-          <button class="cont_btn__1 btn_partido" onclick="startGame()">
+          <button class="cont_btn__1 btn_partido" onclick="navigateTo('index.html')">
             Finalizar partido
           </button>
         </div>
@@ -648,6 +648,8 @@
     <script src="js/script.js"></script>
     <script src="js/partido.js"></script>
     <script src="js/estadisticasZona.js"></script>
+    <script src="js/estadisticasJugadores.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/accion.js"></script>
   </body>
 </html>

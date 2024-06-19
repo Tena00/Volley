@@ -242,6 +242,7 @@ public class AccionesServiceImpl implements AccionesService {
         EstadisticasZona estadisticasZona = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido, idZona);
         EstadisticasAtaque estadisticasAtaque = repositorioEstadisticasAtaque.findByIdPartidoIdZonaAtaque(idPartido, idZonaAtaque);
         Optional<Jugador> jugadorOp = repositorioJugadores.findById(idJugador);
+        Jugador jugador = jugadorOp.get();
         Optional<Partido> partidoOp = repositorioPartidos.findById(idPartido);
         Optional<ZonasCampo> zonasCampoOp = repositorioZonas.findById(idZona);
         Optional<ZonasAtaque> zonasAtaqueOp = repositorioZonasAtaque.findById(idZonaAtaque);
@@ -252,7 +253,6 @@ public class AccionesServiceImpl implements AccionesService {
             estadisticasJugador = new EstadisticasJugador();
             inicializarEstadisticasSaque(estadisticasJugador);
             Partido partido = partidoOp.get();
-            Jugador jugador = jugadorOp.get();
             estadisticasJugador.setJugador(jugador);
             estadisticasJugador.setPartido(partido);
             accionesPartido.setEstadisticasJugador(estadisticasJugador);
@@ -260,6 +260,7 @@ public class AccionesServiceImpl implements AccionesService {
             if (ObjectUtils.isEmpty(estadisticasZona) && ObjectUtils.isEmpty(estadisticasAtaque)) {
                 estadisticasZona = new EstadisticasZona();
                 estadisticasAtaque = new EstadisticasAtaque();
+                estadisticasZona.setJugador(jugador);
                 inicializarEstadisticasZonaSaque(estadisticasZona);
                 inicializarEstadisticasAtaqueSaque(estadisticasAtaque);
                 ZonasCampo zonasCampo = zonasCampoOp.get();
@@ -295,6 +296,7 @@ public class AccionesServiceImpl implements AccionesService {
 
             } else if (ObjectUtils.isEmpty(estadisticasZona)) {
                 estadisticasZona = new EstadisticasZona();
+                estadisticasZona.setJugador(jugador);
                 inicializarEstadisticasZonaSaque(estadisticasZona);
                 ZonasCampo zonasCampo = zonasCampoOp.get();
                 estadisticasZona.setPartido(partido);
@@ -324,6 +326,7 @@ public class AccionesServiceImpl implements AccionesService {
             if (ObjectUtils.isEmpty(estadisticasZona) && ObjectUtils.isEmpty(estadisticasAtaque)) {
                 estadisticasZona = new EstadisticasZona();
                 estadisticasAtaque = new EstadisticasAtaque();
+                estadisticasZona.setJugador(jugador);
                 inicializarEstadisticasZonaSaque(estadisticasZona);
                 inicializarEstadisticasAtaqueSaque(estadisticasAtaque);
                 ZonasCampo zonasCampo = zonasCampoOp.get();
@@ -359,6 +362,7 @@ public class AccionesServiceImpl implements AccionesService {
 
             } else if (ObjectUtils.isEmpty(estadisticasZona)) {
                 estadisticasZona = new EstadisticasZona();
+                estadisticasZona.setJugador(jugador);
                 inicializarEstadisticasZonaSaque(estadisticasZona);
                 ZonasCampo zonasCampo = zonasCampoOp.get();
                 estadisticasZona.setPartido(partido);
