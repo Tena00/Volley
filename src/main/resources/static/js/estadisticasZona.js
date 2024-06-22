@@ -1,3 +1,8 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
 // Objeto de mapeo de nombres de zona
 const zonaMapping = {
     "Zona de saque 1": "10",

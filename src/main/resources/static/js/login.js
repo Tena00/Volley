@@ -1,3 +1,9 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const passwordInput = document.getElementById('password');

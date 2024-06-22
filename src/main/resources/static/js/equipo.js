@@ -1,9 +1,14 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
 document.getElementById('equipoForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita el envío del formulario por defecto
 
     const nombreEquipo = document.getElementById('nombreEquipo').value;
 
-    fetch('http://localhost:8080/equipos/addEquipo', {
+    fetch('https://scoutboard.alvarofs.com/equipos/addEquipo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -32,7 +37,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('http://localhost:8080/equipos/todos')
+        fetch('https://scoutboard.alvarofs.com/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('http://localhost:8080/equipos/todos')
+        fetch('https://scoutboard.alvarofs.com/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const selectAnalizar = document.querySelector('.select_analizar');
@@ -130,7 +135,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     };
 
     // Enviar solicitud POST
-    fetch('http://localhost:8080/jugadores/addJugador', {
+    fetch('https://scoutboard.alvarofs.com/jugadores/addJugador', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -165,7 +170,7 @@ function startGame() {
     console.log('Iniciando partido para el equipo con ID:', idEquipo);
 
     // Realizar la solicitud POST usando fetch
-    fetch(`http://localhost:8080/partidos/iniciarPartido/${idEquipo}`, {
+    fetch(`https://scoutboard.alvarofs.com/partidos/iniciarPartido/${idEquipo}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

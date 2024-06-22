@@ -1,3 +1,8 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
 // Función para obtener el valor de un parámetro de la URL por su nombre
 function getUrlParam(name) {
     const queryString = window.location.search;

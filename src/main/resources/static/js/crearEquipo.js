@@ -1,9 +1,15 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
+
 document.getElementById('equipoForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita el envío del formulario por defecto
 
     const nombreEquipo = document.getElementById('nombreEquipo').value;
 
-    fetch('http://localhost:8080/equipos/addEquipo', {
+    fetch('https://scoutboard.alvarofs.com/equipos/addEquipo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -32,7 +38,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('http://localhost:8080/equipos/todos')
+        fetch('https://scoutboard.alvarofs.com/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -71,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function borrarEquipo(idEquipo) {
         console.log(idEquipo)
-        fetch(`http://localhost:8080/equipos/eliminarEquipo/${idEquipo}`, {
+        fetch(`https://scoutboard.alvarofs.com/equipos/eliminarEquipo/${idEquipo}`, {
             method: 'DELETE'
         })
             .then(response => {

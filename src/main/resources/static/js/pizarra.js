@@ -1,3 +1,8 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
 // Redirigir a la siguiente página con parámetros en la URL
 function irASiguientePantalla() {
     const idPartido = obtenerParametroURL('idPartido');

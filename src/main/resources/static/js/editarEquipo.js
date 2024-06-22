@@ -1,7 +1,12 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('http://localhost:8080/equipos/todos')
+        fetch('https://scoutboard.alvarofs.com/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -23,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Llamada a la API para obtener la lista de jugadores del equipo seleccionado
     function cargarJugadores(idEquipo) {
         console.log(idEquipo);
-        fetch(`http://localhost:8080/equipos/${idEquipo}/jugadores`)
+        fetch(`https://scoutboard.alvarofs.com/equipos/${idEquipo}/jugadores`)
             .then(response => response.json())
             .then(jugadores => {
                 const jugadoresList = document.getElementById('jugadoresList');
@@ -70,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para borrar un jugador
     function borrarJugador(idJugador) {
-        fetch(`http://localhost:8080/jugadores/eliminarJugador/${idJugador}`, {
+        fetch(`https://scoutboard.alvarofs.com/jugadores/eliminarJugador/${idJugador}`, {
             method: 'DELETE'
         })
             .then(response => {
@@ -140,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Enviar solicitud POST
-        fetch('http://localhost:8080/jugadores/addJugador', {
+        fetch('https://scoutboard.alvarofs.com/jugadores/addJugador', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

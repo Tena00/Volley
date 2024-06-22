@@ -1,3 +1,9 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
+
 window.addEventListener('load', function() {
     obtenerZonasCampo();
     obtenerZonasAtaque();

@@ -1,3 +1,9 @@
+// Nuevo dominio de la API
+var apiUrl = 'https://scoutboard.alvarofs.com';
+
+
+
+
 let jugadorTitularSeleccionado = null;
 let jugadorSuplenteSeleccionado = null;
 
