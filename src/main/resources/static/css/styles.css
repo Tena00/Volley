@@ -26,13 +26,11 @@ body {
 
 /* Home */
 .sect {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .cont {
-  width: auto;
   padding: 4rem;
   background-color: white;
   border-radius: 32px;
@@ -319,19 +317,6 @@ button:hover {
   /* border: 10px solid rgb(255, 255, 255); */
   border-right-width: 0px;
 }
-
-/* .mitad1_saque td {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-} */
-
-.btn-fuera-sp {
-}
-/* .mitad1_saque tr:first-child,
-.mitad1_saque tr:last-child {
-  border-right: 0px solid transparent;
-} */
 
 .mitad1_saque tr:nth-child(2) {
   border-top: 0px solid transparent;
@@ -759,8 +744,106 @@ tr > td.btn-fuera-v > .fuera_v:hover {
 
 /* Media Queries */
 /* Tablet */
-@media (max-width: 768px) {
-}
 
 @media (max-width: 1024px) {
+  
+  /* Nav */
+  .sect_nav{
+    padding: 1rem;
+  }
+
+  .cont_nav{
+    padding: 0.75rem 1.5rem;
+    min-width: 50%;
+  }
+
+  .cont_nav__logo img {
+    width: 100px;
+  }
+  .nav_partido{
+    justify-content: space-between!important;
+  }
+
+  .campo_buttons__inferior{
+    /* flex-direction: column; */
+    align-items: center;
+  }
+
+  .btn_partido, .cont_btn__1,
+.cont_btn__2,
+.cont_btn__3,
+.cont_btn__4,
+.cont_btn__5{
+    height: auto;
+    width: auto;
+    padding: 0.5rem 2rem;
+    background-size: 35px;
+    background-position: -10px 7px;
+    font-size: 16px;
+    text-align: center;
+  }
+  /* Partido */
+  .sect_partido{
+    display: grid;
+    grid-template-columns: 0.5fr auto;
+  align-items: inherit;
+    }
+    
+  .fuera{
+    height: 45px!important;
+  }
+
+  .btn-fuera td, .zTransp td{
+    height: 45px!important;
+  }
+  .rotacion {
+    font-size: 16px;
+  }
+
+.remates_rojo, .remates_verde, .remates_amarillo{
+  width: 30px;
+  height: 30px;
+}
+
+  .btn-fuera-sp td{
+    height: 50px!important;
+  }
+    .z1,
+    .z2,
+    .z3,
+    .z4,
+    .z5,
+    .z6,
+    .z7,
+    .z8,
+    .z9,
+    .r1,
+    .r2,
+    .r3,
+    .r4,
+    .r5,
+    .r6,
+    .r7,
+    .r8,
+    .r9,
+    .s5,
+    .s6,
+    .s9{
+      width: 70px;
+      height: 80px;
+      font-size: 24px;
+    }
+
+    .mitad1_zonas td, .mitad2_zonas td{
+      height: inherit;
+    }
+
+    tr > td.btn-fuera-v > .fuera_v {
+      width: 45px!important;
+      font-size: 24px;
+    }
+
+    .btn-fuera-v{
+      background-color: rgb(205, 167, 95) !important;
+    }
 }
