@@ -1,7 +1,3 @@
-// Nuevo dominio de la API
-var apiUrl = 'https://scoutboard.alvarofs.com';
-
-
 
 
 window.addEventListener('load', function() {
@@ -11,7 +7,7 @@ window.addEventListener('load', function() {
 
 // Función para obtener los datos de las Zonas del campo desde la API
 function obtenerZonasCampo() {
-    fetch('http://localhost:8080/zonas')
+    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/zonas')
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');
@@ -39,7 +35,7 @@ function actualizarBotonesZonasCampo(data) {
 
 // Función para obtener los datos de las Zonas del campo desde la API
 function obtenerZonasAtaque() {
-    fetch('http://localhost:8080/zonasAtaque')
+    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/zonasAtaque')
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');

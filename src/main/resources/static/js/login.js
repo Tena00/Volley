@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Realizar una solicitud AJAX al backend para verificar la contraseña
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/login', true);
+        xhr.open('POST', 'https://scoutboard-2c1996d939fa.herokuapp.com/login', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {

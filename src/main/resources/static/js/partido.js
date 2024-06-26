@@ -1,6 +1,3 @@
-// Nuevo dominio de la API
-var apiUrl = 'https://scoutboard.alvarofs.com';
-
 
 
 
@@ -26,7 +23,7 @@ console.log('ID del equipo:', idEquipo);
 
 // Función para obtener los jugadores titulares desde la API
 function obtenerJugadoresTitulares() {
-    fetch(`http://localhost:8080/jugadores/titulares/${idEquipo}`)
+    fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/jugadores/titulares/${idEquipo}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');
@@ -55,7 +52,7 @@ function actualizarBotonesTitulares(data) {
 
 // Función para obtener los jugadores suplentes desde la API
 function obtenerJugadoresSuplentes() {
-    fetch(`http://localhost:8080/jugadores/suplentes/${idEquipo}`)
+    fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/jugadores/suplentes/${idEquipo}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');
@@ -150,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function actualizarEstadoJugador(jugadorId, esTitular) {
     console.log(`Actualizando estado del jugador con ID: ${jugadorId} a titular: ${esTitular}`);
-    fetch(`http://localhost:8080/jugadores/${jugadorId}`, {
+    fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/jugadores/${jugadorId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
