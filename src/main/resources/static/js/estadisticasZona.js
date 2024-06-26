@@ -1,7 +1,3 @@
-// Nuevo dominio de la API
-var apiUrl = 'https://scoutboard.alvarofs.com';
-
-
 
 // Objeto de mapeo de nombres de zona
 const zonaMapping = {
@@ -22,7 +18,7 @@ const zonaMapping = {
 
 async function cargarEstadisticas(idPartido) {
     try {
-        const response = await fetch(`http://localhost:8080/zonas/estadisticas/${idPartido}`);
+        const response = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticas/${idPartido}`);
         const data = await response.json();
 
         console.log("Datos recibidos de la API:", data);
@@ -71,7 +67,7 @@ async function cargarEstadisticas(idPartido) {
                     if (normalizedThText === "total") {
                         try {
                             // Realizar la llamada para obtener datos adicionales de "TOTAL"
-                            const totalDataResponse = await fetch(`http://localhost:8080/zonas/estadisticasTotal/${idPartido}`);
+                            const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${idPartido}`);
                             const totalData = await totalDataResponse.json();
 
                             console.log("Datos de TOTAL recibidos:", totalData);

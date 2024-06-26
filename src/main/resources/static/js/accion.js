@@ -52,7 +52,7 @@ function submitAccion() {
             resultadoAccion: resultadoAccionSeleccionado
         };
 
-        fetch('http://localhost:8080/accion/saque', {
+        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/accion/saque', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ function submitAccion() {
             resultadoAccion: resultadoAccionSeleccionado
         };
 
-        fetch('http://localhost:8080/accion/remate', {
+        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/accion/remate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

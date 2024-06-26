@@ -1,5 +1,4 @@
-// Nuevo dominio de la API
-var apiUrl = 'https://scoutboard.alvarofs.com';
+
 
 
 
@@ -32,7 +31,7 @@ async function fetchAndCreateAccordionAndTable() {
 
     try {
         // Llamada AJAX usando Fetch API para obtener jugadores del equipo
-        const response = await fetch(`http://localhost:8080/equipos/${equipoId}/jugadores`);
+        const response = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/equipos/${equipoId}/jugadores`);
         if (!response.ok) {
             throw new Error('Error al obtener los datos de la API');
         }
@@ -165,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Función para cargar estadísticas de un jugador
 async function cargarEstadisticasJugador(jugadorId, idPartido, accordionCollapse) {
     try {
-        const response = await fetch(`http://localhost:8080/zonas/estadisticasJugador/${jugadorId}?idPartido=${idPartido}`);
+        const response = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasJugador/${jugadorId}?idPartido=${idPartido}`);
         if (!response.ok) {
             throw new Error('Error al obtener las estadísticas del jugador');
         }
@@ -219,7 +218,7 @@ async function cargarEstadisticasJugador(jugadorId, idPartido, accordionCollapse
             if (nombreZonaHTML.toLowerCase() === "total") {
                 try {
                     // Realizar la llamada para obtener datos adicionales de "TOTAL"
-                    const totalDataResponse = await fetch(`http://localhost:8080/zonas/estadisticasTotal/${jugadorId}?idPartido=${idPartido}`);
+                    const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${jugadorId}?idPartido=${idPartido}`);
                     const totalData = await totalDataResponse.json();
 
                     console.log("Datos de TOTAL recibidos:", totalData);
