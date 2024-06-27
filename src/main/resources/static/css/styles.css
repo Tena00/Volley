@@ -697,6 +697,11 @@ tr > td.btn-fuera-v > .fuera_v:hover {
 /* END Jugadores */
 
 /* Canvas */
+canvas {
+  width: 1170px;
+  height: 655px;
+}
+
 .select {
   user-select: none;
 }
@@ -743,16 +748,21 @@ tr > td.btn-fuera-v > .fuera_v:hover {
 /* END Canvas */
 
 /* Media Queries */
-/* Tablet */
+@media (max-width: 1280px) {
+  .pizarra {
+    margin-top: 1rem;
+  }
 
-@media (max-width: 1024px) {
-  
+  .pizarra > .mitad1 > table.mitad1_saque > tr > tbody > td.s5 {
+    width: 100px;
+  }
+
   /* Nav */
-  .sect_nav{
+  .sect_nav {
     padding: 1rem;
   }
 
-  .cont_nav{
+  .cont_nav {
     padding: 0.75rem 1.5rem;
     min-width: 50%;
   }
@@ -760,20 +770,21 @@ tr > td.btn-fuera-v > .fuera_v:hover {
   .cont_nav__logo img {
     width: 100px;
   }
-  .nav_partido{
-    justify-content: space-between!important;
+  .nav_partido {
+    justify-content: space-between !important;
   }
 
-  .campo_buttons__inferior{
+  .campo_buttons__inferior {
     /* flex-direction: column; */
     align-items: center;
   }
 
-  .btn_partido, .cont_btn__1,
-.cont_btn__2,
-.cont_btn__3,
-.cont_btn__4,
-.cont_btn__5{
+  .btn_partido,
+  .cont_btn__1,
+  .cont_btn__2,
+  .cont_btn__3,
+  .cont_btn__4,
+  .cont_btn__5 {
     height: auto;
     width: auto;
     padding: 0.5rem 2rem;
@@ -783,67 +794,344 @@ tr > td.btn-fuera-v > .fuera_v:hover {
     text-align: center;
   }
   /* Partido */
-  .sect_partido{
+  .sect_partido {
     display: grid;
     grid-template-columns: 0.5fr auto;
-  align-items: inherit;
-    }
-    
-  .fuera{
-    height: 45px!important;
+    align-items: inherit;
   }
 
-  .btn-fuera td, .zTransp td{
-    height: 45px!important;
+  .fuera {
+    height: 45px !important;
+  }
+
+  .btn-fuera td,
+  .zTransp td {
+    height: 45px !important;
   }
   .rotacion {
     font-size: 16px;
   }
 
-.remates_rojo, .remates_verde, .remates_amarillo{
-  width: 30px;
-  height: 30px;
+  .remates_rojo,
+  .remates_verde,
+  .remates_amarillo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-fuera-sp td {
+    height: 50px !important;
+  }
+  .z1,
+  .z2,
+  .z3,
+  .z4,
+  .z5,
+  .z6,
+  .z7,
+  .z8,
+  .z9,
+  .r1,
+  .r2,
+  .r3,
+  .r4,
+  .r5,
+  .r6,
+  .r7,
+  .r8,
+  .r9,
+  .s5,
+  .s6,
+  .s9 {
+    width: 70px;
+    height: 80px;
+    font-size: 24px;
+  }
+
+  .mitad1_zonas td,
+  .mitad2_zonas td {
+    height: inherit;
+  }
+
+  tr > td.btn-fuera-v > .fuera_v {
+    width: 45px !important;
+    font-size: 24px;
+  }
+
+  .btn-fuera-v {
+    background-color: rgb(205, 167, 95) !important;
+  }
 }
 
-  .btn-fuera-sp td{
-    height: 50px!important;
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .sect {
+    height: 100vh;
   }
-    .z1,
-    .z2,
-    .z3,
-    .z4,
-    .z5,
-    .z6,
-    .z7,
-    .z8,
-    .z9,
-    .r1,
-    .r2,
-    .r3,
-    .r4,
-    .r5,
-    .r6,
-    .r7,
-    .r8,
-    .r9,
-    .s5,
-    .s6,
-    .s9{
-      width: 70px;
-      height: 80px;
-      font-size: 24px;
-    }
 
-    .mitad1_zonas td, .mitad2_zonas td{
-      height: inherit;
-    }
+  canvas {
+    width: 760px;
+    height: 477px;
+  }
 
-    tr > td.btn-fuera-v > .fuera_v {
-      width: 45px!important;
-      font-size: 24px;
-    }
+  .pizarra {
+    margin-top: 1rem;
+  }
 
-    .btn-fuera-v{
-      background-color: rgb(205, 167, 95) !important;
-    }
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z5 {
+    width: auto;
+  }
+
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z1,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z2,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z3,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z4,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z5,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z6,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z7,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z8,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad1_zonas
+    > tbody
+    > tr
+    > td
+    > .z9,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r1,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r2,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r3,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r4,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r5,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r6,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r7,
+  div.campo_mitades.pizarra
+    > div.mitad2.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r8,
+  div.campo_mitades.pizarra
+    > div.mitad1.select
+    > table.mitad2_zonas
+    > tbody
+    > tr
+    > td
+    > .r9 {
+    width: 100px;
+    height: 110px;
+  }
+
+  /* Nav */
+  .sect_nav {
+    padding: 1rem;
+  }
+
+  .cont_nav {
+    padding: 0.75rem 1.5rem;
+    min-width: 50%;
+  }
+
+  .cont_nav__logo img {
+    width: 100px;
+  }
+  .nav_partido {
+    justify-content: space-between !important;
+  }
+
+  .campo_buttons__inferior {
+    /* flex-direction: column; */
+    align-items: center;
+  }
+
+  .btn_partido,
+  .cont_btn__1,
+  .cont_btn__2,
+  .cont_btn__3,
+  .cont_btn__4,
+  .cont_btn__5 {
+    height: auto;
+    width: auto;
+    padding: 0.5rem 2rem;
+    background-size: 35px;
+    background-position: -10px 7px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* Crear Equipo */
+  .sect_equipo,
+  .sect_jugadores {
+    max-width: initial;
+    display: grid;
+    grid-template-columns: 0.35fr 0.65fr;
+    padding: 2rem;
+    margin: 0;
+  }
+
+  /* Partido */
+  .sect_partido {
+    display: grid;
+    grid-template-columns: 0.5fr auto;
+    align-items: inherit;
+  }
+
+  .fuera {
+    height: 45px !important;
+  }
+
+  .btn-fuera td,
+  .zTransp td {
+    height: 45px !important;
+  }
+  .rotacion {
+    font-size: 16px;
+  }
+
+  .remates_rojo,
+  .remates_verde,
+  .remates_amarillo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-fuera-sp td {
+    height: 50px !important;
+  }
+  .z1,
+  .z2,
+  .z3,
+  .z4,
+  .z5,
+  .z6,
+  .z7,
+  .z8,
+  .z9,
+  .r1,
+  .r2,
+  .r3,
+  .r4,
+  .r5,
+  .r6,
+  .r7,
+  .r8,
+  .r9,
+  .s5,
+  .s6,
+  .s9 {
+    width: 70px;
+    height: 80px;
+    font-size: 24px;
+  }
+
+  .mitad1_zonas td,
+  .mitad2_zonas td {
+    height: inherit;
+  }
+
+  tr > td.btn-fuera-v > .fuera_v {
+    width: 45px !important;
+    font-size: 24px;
+  }
+
+  .btn-fuera-v {
+    background-color: rgb(205, 167, 95) !important;
+  }
 }
