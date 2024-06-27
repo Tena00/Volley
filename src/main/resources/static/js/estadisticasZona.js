@@ -115,7 +115,7 @@ async function actualizarFilaTotal(idPartido) {
             console.warn("No se encontró la fila de TOTAL.");
         }
     } catch (error) {
-        console.error("Error al obtener los datos de TOTAL:", error);
+        console.error("Error al obtener los datos de :", error);
     }
 }
 
