@@ -18,6 +18,8 @@ public interface ZonasCampoService {
 
     public int[] mostrarEstadisticasTotalesPartido(Integer idPartido);
 
+    public void eliminarEstadisticasCampo(Integer idEstadisticasZona);
+
 //    public List<EstadisticasZona> mostrarEstadisticasJugadorPartido(Integer idPartido);
 //
 //    public List<EstadisticasZona> mostrarEstadisticasZonaPartidoJugador( Integer idPartido, Integer idJugador, Integer idZona);

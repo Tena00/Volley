@@ -2,15 +2,18 @@ package com.manuel.tfg.services.impl;
 
 import com.manuel.tfg.daos.RepositorioEquipos;
 import com.manuel.tfg.daos.RepositorioEstadisticas;
+import com.manuel.tfg.daos.RepositorioEstadisticasZona;
 import com.manuel.tfg.daos.RepositorioJugadores;
 import com.manuel.tfg.daos.model.Equipo;
 import com.manuel.tfg.daos.model.EstadisticasJugador;
+import com.manuel.tfg.daos.model.EstadisticasZona;
 import com.manuel.tfg.daos.model.Jugador;
 import com.manuel.tfg.exception.EquipoExistenteExcepcion;
 import com.manuel.tfg.exception.JugadorExistenteException;
 import com.manuel.tfg.services.EquipoService;
 import com.manuel.tfg.services.EstadisticasJugadorPartidoService;
 import com.manuel.tfg.services.JugadoresService;
+import com.manuel.tfg.services.ZonasCampoService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,15 +26,19 @@ public class JugadorServiceImpl implements JugadoresService {
     private RepositorioJugadores repositorioJugadores;
     private RepositorioEquipos repositorioEquipos;
     private RepositorioEstadisticas repositorioEstadisticas;
+    private RepositorioEstadisticasZona repositorioEstadisticasZona;
 
     private EstadisticasJugadorPartidoService estadisticasJugadorPartidoService;
     private EquipoService equipoService;
+    private ZonasCampoService zonasCampoService;
 
-    public JugadorServiceImpl(RepositorioJugadores repositorioJugadores, RepositorioEquipos repositorioEquipos, RepositorioEstadisticas repositorioEstadisticas, EstadisticasJugadorPartidoService estadisticasJugadorPartidoService) {
+    public JugadorServiceImpl(ZonasCampoService zonasCampoService ,RepositorioJugadores repositorioJugadores, RepositorioEquipos repositorioEquipos, RepositorioEstadisticas repositorioEstadisticas, EstadisticasJugadorPartidoService estadisticasJugadorPartidoService, RepositorioEstadisticasZona  repositorioEstadisticasZona) {
         this.repositorioJugadores = repositorioJugadores;
         this.repositorioEquipos = repositorioEquipos;
         this.repositorioEstadisticas = repositorioEstadisticas;
         this.estadisticasJugadorPartidoService = estadisticasJugadorPartidoService;
+        this.repositorioEstadisticasZona = repositorioEstadisticasZona;
+        this.zonasCampoService = zonasCampoService;
 
     }
 
@@ -99,9 +106,14 @@ public class JugadorServiceImpl implements JugadoresService {
     public void eliminarJugador(Integer id) throws JugadorExistenteException {
         if (repositorioJugadores.existsById(id)) {
             List<EstadisticasJugador> estadisticasJugadorList = repositorioEstadisticas.findByIdJugador(id);
+            List<EstadisticasZona> estadisticasZonasList = repositorioEstadisticasZona.findByEstadisticasJugadorZona(id);
             for (EstadisticasJugador estadisticasJugador : estadisticasJugadorList) {
 
                 estadisticasJugadorPartidoService.eliminarEstadisticas(estadisticasJugador.getIdEstadisticasJugadorPartido());
+            }
+            for (EstadisticasZona estadisticasZona : estadisticasZonasList) {
+
+                zonasCampoService.eliminarEstadisticasCampo(estadisticasZona.getIdEstadisticasZonaCampo());
             }
             repositorioJugadores.deleteById(id);
         } else {

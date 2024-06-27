@@ -11,4 +11,7 @@ public interface RepositorioEquipos extends JpaRepository<Equipo,Integer> {
 
     @Query("SELECT e FROM Jugador e WHERE e.equipo.idEquipo = ?1")
     List<Jugador> findByIdEquipoIdJugador(Integer idEquipo);
+
+    @Query("SELECT p.equipo FROM Partido p WHERE p.idPartido = ?1")
+    Equipo findEquipoByIdPartido(Integer idPartido);
 }

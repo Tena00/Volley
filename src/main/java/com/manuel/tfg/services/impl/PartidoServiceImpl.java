@@ -1,13 +1,12 @@
 package com.manuel.tfg.services.impl;
 
-import com.manuel.tfg.daos.RepositorioEquipos;
-import com.manuel.tfg.daos.RepositorioEstadisticas;
-import com.manuel.tfg.daos.RepositorioJugadores;
-import com.manuel.tfg.daos.RepositorioPartidos;
+import com.manuel.tfg.daos.*;
 import com.manuel.tfg.daos.model.Equipo;
+import com.manuel.tfg.daos.model.EstadisticasAtaque;
 import com.manuel.tfg.daos.model.EstadisticasJugador;
 import com.manuel.tfg.daos.model.Partido;
 import com.manuel.tfg.services.PartidoService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -22,12 +21,14 @@ public class PartidoServiceImpl implements PartidoService {
     private RepositorioEquipos repositorioEquipos;
     private RepositorioJugadores repositorioJugadores;
     private RepositorioEstadisticas repositorioEstadisticas;
+    private RepositorioEstadisticasAtaque repositorioEstadisticasZonaAtaque;
 
-    public PartidoServiceImpl(RepositorioPartidos repositorioPartidos, RepositorioEquipos repositorioEquipos, RepositorioJugadores repositorioJugadores, RepositorioEstadisticas repositorioEstadisticas) {
+    public PartidoServiceImpl(RepositorioPartidos repositorioPartidos, RepositorioEquipos repositorioEquipos, RepositorioJugadores repositorioJugadores, RepositorioEstadisticas repositorioEstadisticas, RepositorioEstadisticasAtaque repositorioEstadisticasZonaAtaque) {
         this.repositorioPartidos = repositorioPartidos;
         this.repositorioEquipos = repositorioEquipos;
         this.repositorioJugadores = repositorioJugadores;
         this.repositorioEstadisticas = repositorioEstadisticas;
+        this.repositorioEstadisticasZonaAtaque = repositorioEstadisticasZonaAtaque;
     }
 
 
@@ -55,7 +56,15 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
+    @Transactional
     public void borrarPartido(Integer idPartido) {
-        repositorioPartidos.deleteById(idPartido);
+        if (repositorioPartidos.existsById(idPartido)) {
+            // Obtener y eliminar estadísticas de zona de ataque asociadas al partido
+            List<EstadisticasAtaque> estadisticas = repositorioEstadisticasZonaAtaque.findByIdPartido(idPartido);
+            repositorioEstadisticasZonaAtaque.deleteAll(estadisticas);
+
+            // Eliminar el partido
+            repositorioPartidos.deleteById(idPartido);
+        }
     }
 }

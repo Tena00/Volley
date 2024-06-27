@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     cargarJugadores(equipoId);
                 }
             })
+        location.reload()
             .catch(error => {
                 console.error('Error al borrar el jugador:', error.message);
             });

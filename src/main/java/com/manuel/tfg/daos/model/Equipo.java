@@ -2,6 +2,8 @@ package com.manuel.tfg.daos.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Equipos")
 public class Equipo {

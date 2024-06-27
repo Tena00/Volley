@@ -22,6 +22,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
                 return response.text().then(text => { throw new Error(text) });
             }
         })
+    location.reload()
         .then(data => {
             console.log('Success:', data);
             alert("Equipo agregado exitosamente.");
@@ -31,7 +32,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
             console.error('Error:', error);
             alert("Error al agregar el equipo: " + error.message);
             // Aquí puedes manejar los errores de la API, por ejemplo, mostrar un mensaje de error
-        });location.reload();
+        });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function borrarEquipo(idEquipo) {
         console.log(idEquipo)
-        fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/equipos/eliminarEquipo/${idEquipo}`, {
+        fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/eliminarEquipo/${idEquipo}`, {
             method: 'DELETE'
         })
             .then(response => {
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('Error al borrar el jugador:', error.message);
             });
-        location.reload();
+
     }
 
     // Llama a la función para cargar los equipos cuando se carga la página

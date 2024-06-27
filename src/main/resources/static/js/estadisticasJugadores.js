@@ -172,6 +172,10 @@ async function cargarEstadisticasJugador(jugadorId, idPartido, accordionCollapse
 
         console.log(`Datos de estadísticas para jugador ${jugadorId} en partido ${idPartido}:`, data);
 
+        // Calcular el total de remates para todas las estadísticas recibidas
+        const totalRemates = data.reduce((sum, estadistica) => sum + estadistica.rematesTotal, 0);
+        const totalSaques = data.reduce((sum, estadistica) => sum + estadistica.saquesTotal, 0);
+
         // Obtener el acordeón del jugador actual
         const accordionBody = accordionCollapse.querySelector('.accordion-body');
         if (!accordionBody) {
@@ -204,39 +208,65 @@ async function cargarEstadisticasJugador(jugadorId, idPartido, accordionCollapse
             const cells = row.parentElement.querySelectorAll('td');
 
             // Calcular remates fallados
-            const rematesFallados =
-                estadistica.rematesTotal -
-                (estadistica.rematesPuntos + estadistica.rematesBloqueados);
+            const rematesFallados = estadistica.rematesTotal - (estadistica.rematesPuntos + estadistica.rematesBloqueados);
+            const saquesFallados = estadistica.saquesTotal - estadistica.saquesPuntos;
+            // Calcular el porcentaje de remates total
+            const porcentajeRematesTotal = totalRemates ? ((estadistica.rematesTotal / totalRemates) * 100).toFixed(2) + "%" : "-";
+            const porcentajeSaquesTotal = totalSaques ? ((estadistica.saquesTotal / totalSaques) * 100).toFixed(2) + "%" : "-";
 
-            // Actualizar las celdas con los datos correspondientes
-            cells[0].textContent = rematesFallados || "-";
-            cells[1].textContent = estadistica.rematesBloqueados || "-";
-            cells[2].textContent = estadistica.rematesPuntos || "-";
-            cells[3].textContent = estadistica.rematesTotal || "-";
-
-            // Verificar si es la zona "TOTAL"
-            if (nombreZonaHTML.toLowerCase() === "total") {
-                try {
-                    // Realizar la llamada para obtener datos adicionales de "TOTAL"
-                    const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${jugadorId}?idPartido=${idPartido}`);
-                    const totalData = await totalDataResponse.json();
-
-                    console.log("Datos de TOTAL recibidos:", totalData);
-
-                    // Actualizar las celdas con los datos de "TOTAL"
-                    cells[4].textContent = totalData[0] || "-";
-                    cells[5].textContent = totalData[1] || "-";
-                    cells[6].textContent = totalData[2] || "-";
-                    cells[7].textContent = totalData[3] || "-";
-                } catch (error) {
-                    console.error("Error al obtener los datos de TOTAL:", error);
-                }
+            if (nombreZonaHTML.startsWith("Zona de saque")) {
+                cells[0].textContent = saquesFallados || "-";
+                cells[1].textContent = estadistica.rematesBloqueados || "-";
+                cells[2].textContent = estadistica.saquesPuntos || "-";
+                cells[3].textContent = porcentajeSaquesTotal;
+            } else {
+                // Actualizar las celdas con los datos correspondientes
+                cells[0].textContent = rematesFallados || "-";
+                cells[1].textContent = estadistica.rematesBloqueados || "-";
+                cells[2].textContent = estadistica.rematesPuntos || "-";
+                cells[3].textContent = porcentajeRematesTotal;
             }
+
+            // Llamar a la función para actualizar la fila "TOTAL" específica del jugador
+            actualizarFilaTotalJugador(idPartido, totalRemates, accordionCollapse);
         }
+
     } catch (error) {
         console.error(`Error al cargar las estadísticas para el jugador ${jugadorId}:`, error);
     }
 }
+
+async function actualizarFilaTotalJugador(idPartido, totalRemates, accordionCollapse) {
+    try {
+        const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${idPartido}`);
+        const totalData = await totalDataResponse.json();
+
+        // Obtener los datos específicos
+        const rematesPuntos = totalData[1] || 0; // Remates que han sido puntos
+        const rematesFallados = totalData[3] || 0; // Remates fallados
+        const rematesBloqueados = totalData[2] || 0; // Remates bloqueados
+
+        // Calcular el porcentaje de acierto
+        const totalRematesCalculado = rematesFallados + rematesBloqueados + rematesPuntos;
+        const porcentajeAcierto = totalRemates !== 0 ? ((rematesPuntos / totalRemates) * 100).toFixed(2) + "%" : "-";
+
+        // Buscar la fila de "TOTAL" dentro del acordeón específico
+        const totalRow = accordionCollapse.querySelector("tbody tr[data-zona='TOTAL']");
+        if (totalRow) {
+            const cells = totalRow.querySelectorAll("td");
+            cells[0].textContent = rematesFallados || "-";
+            cells[1].textContent = rematesBloqueados || "-";
+            cells[2].textContent = rematesPuntos || "-";
+            cells[3].textContent = porcentajeAcierto;
+        } else {
+            console.warn("No se encontró la fila de TOTAL en el acordeón específico.");
+        }
+    } catch (error) {
+        console.error("Error al obtener los datos de TOTAL:", error);
+    }
+}
+
+
 // Objeto de mapeo de nombres de zona
 const zonaMappingJugadores = {
     "Zona de saque 1": "10",

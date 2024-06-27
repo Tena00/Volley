@@ -1,4 +1,3 @@
-
 // Objeto de mapeo de nombres de zona
 const zonaMapping = {
     "Zona de saque 1": "10",
@@ -23,6 +22,10 @@ async function cargarEstadisticas(idPartido) {
 
         console.log("Datos recibidos de la API:", data);
 
+        // Calcular el total de remates para todas las estadísticas recibidas
+        const totalRemates = data.reduce((sum, estadistica) => sum + estadistica.rematesTotal, 0);
+        const totalSaques = data.reduce((sum, estadistica) => sum + estadistica.saquesTotal, 0);
+
         // Iterar sobre cada estadística recibida
         for (const estadistica of data) {
             const nombreZonaDB = estadistica.idZona.nombreZona;
@@ -31,9 +34,7 @@ async function cargarEstadisticas(idPartido) {
             );
 
             if (!nombreZonaHTML) {
-                console.warn(
-                    `No se encontró la zona correspondiente para ${nombreZonaDB}`
-                );
+                console.warn(`No se encontró la zona correspondiente para ${nombreZonaDB}`);
                 continue; // Saltar al siguiente si no se encuentra el nombre de zona correspondiente
             }
 
@@ -52,35 +53,31 @@ async function cargarEstadisticas(idPartido) {
                     // Obtener las celdas de la fila actual
                     const cells = row.querySelectorAll("td");
 
-                    // Calcular remates fallados
-                    const rematesFallados =
-                        estadistica.rematesTotal -
-                        (estadistica.rematesPuntos + estadistica.rematesBloqueados);
+                    // Calcular remates fallados, bloqueados y puntos
+                    const rematesFallados = estadistica.rematesTotal - (estadistica.rematesPuntos + estadistica.rematesBloqueados);
+                    const saquesFallados = estadistica.saquesTotal - estadistica.saquesPuntos;
+                    // Calcular el porcentaje de remates total
+                    const porcentajeRematesTotal = totalRemates ? ((estadistica.rematesTotal / totalRemates) * 100).toFixed(2) + "%" : "-";
+                    const porcentajeSaquesTotal = totalSaques ? ((estadistica.saquesTotal / totalSaques) * 100).toFixed(2) + "%" : "-";
 
-                    // Actualizar las celdas con los datos correspondientes
-                    cells[0].textContent = rematesFallados || "-";
-                    cells[1].textContent = estadistica.rematesBloqueados || "-";
-                    cells[2].textContent = estadistica.rematesPuntos || "-";
-                    cells[3].textContent = estadistica.rematesTotal || "-";
+                    if (nombreZonaHTML.startsWith("Zona de saque")) {
 
-                    // Verificar si es la zona "TOTAL"
-                    if (normalizedThText === "total") {
-                        try {
-                            // Realizar la llamada para obtener datos adicionales de "TOTAL"
-                            const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${idPartido}`);
-                            const totalData = await totalDataResponse.json();
+                        cells[0].textContent = saquesFallados|| "-";
+                        cells[1].textContent = estadistica.rematesBloqueados || "-";
+                        cells[2].textContent = estadistica.saquesPuntos || "-";
+                        cells[3].textContent = porcentajeSaquesTotal;
 
-                            console.log("Datos de TOTAL recibidos:", totalData);
+                    }else {
 
-                            // Actualizar las celdas con los datos de "TOTAL"
-                            cells[4].textContent = totalData[0] || "-";
-                            cells[5].textContent = totalData[1] || "-";
-                            cells[6].textContent = totalData[2] || "-";
-                            cells[7].textContent = totalData[3] || "-";
-                        } catch (error) {
-                            console.error("Error al obtener los datos de TOTAL:", error);
-                        }
+                        // Actualizar las celdas con los datos correspondientes
+                        cells[0].textContent = rematesFallados || "-";
+                        cells[1].textContent = estadistica.rematesBloqueados || "-";
+                        cells[2].textContent = estadistica.rematesPuntos || "-";
+                        cells[3].textContent = porcentajeRematesTotal;
                     }
+
+                    // Llamar a la función para actualizar la fila "TOTAL"
+                    actualizarFilaTotal(idPartido, totalRemates);
                 }
             }
         }
@@ -88,6 +85,42 @@ async function cargarEstadisticas(idPartido) {
         console.error("Error al cargar las estadísticas:", error);
     }
 }
+
+
+async function actualizarFilaTotal(idPartido) {
+    try {
+        const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${idPartido}`);
+        const totalData = await totalDataResponse.json();
+
+
+        // Obtener los datos específicos
+        const rematesPuntos = totalData[1] || 0; // Remates que han sido puntos
+        const rematesFallados = totalData[3] || 0; // Remates fallados
+        const rematesBloqueados = totalData[2] || 0; // Remates bloqueados
+        const totalRemates = totalData[0] || 0; // Total de remates en el partido
+
+        // Calcular el porcentaje de acierto
+        const totalRematesCalculado = rematesFallados + rematesBloqueados + rematesPuntos;
+        const porcentajeAcierto = totalRemates !== 0 ? ((rematesPuntos / totalRemates) * 100).toFixed(2) + "%" : "-";
+
+        // Buscar la fila de "TOTAL" y actualizar sus celdas
+        const totalRow = document.querySelector("tbody tr[data-zona='total']");
+        if (totalRow) {
+            const cells = totalRow.querySelectorAll("td");
+            cells[0].textContent = rematesFallados || "-";
+            cells[1].textContent = rematesBloqueados || "-";
+            cells[2].textContent = rematesPuntos || "-";
+            cells[3].textContent = porcentajeAcierto;
+        } else {
+            console.warn("No se encontró la fila de TOTAL.");
+        }
+    } catch (error) {
+        console.error("Error al obtener los datos de TOTAL:", error);
+    }
+}
+
+
+
 
 window.onload = function () {
     // Obtener los parámetros de la URL
