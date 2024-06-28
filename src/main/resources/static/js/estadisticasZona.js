@@ -1,8 +1,8 @@
 // Objeto de mapeo de nombres de zona
 const zonaMapping = {
-    "Zona de saque 1": "10",
-    "Zona de saque 5": "11",
-    "Zona de saque 6": "12",
+    "Zona de saque 1": "12",
+    "Zona de saque 5": "10",
+    "Zona de saque 6": "11",
     "Zona 1": "1",
     "Zona 2": "2",
     "Zona 3": "3",
@@ -17,7 +17,7 @@ const zonaMapping = {
 
 async function cargarEstadisticas(idPartido) {
     try {
-        const response = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticas/${idPartido}`);
+        const response = await fetch(`http://localhost:8080/zonas/estadisticas/${idPartido}`);
         const data = await response.json();
 
         console.log("Datos recibidos de la API:", data);
@@ -57,8 +57,8 @@ async function cargarEstadisticas(idPartido) {
                     const rematesFallados = estadistica.rematesTotal - (estadistica.rematesPuntos + estadistica.rematesBloqueados);
                     const saquesFallados = estadistica.saquesTotal - estadistica.saquesPuntos;
                     // Calcular el porcentaje de remates total
-                    const porcentajeRematesTotal = totalRemates ? ((estadistica.rematesTotal / totalRemates) * 100).toFixed(2) + "%" : "-";
-                    const porcentajeSaquesTotal = totalSaques ? ((estadistica.saquesTotal / totalSaques) * 100).toFixed(2) + "%" : "-";
+                    const porcentajeRematesTotal = estadistica.rematesTotal ? ((estadistica.rematesPuntos / estadistica.rematesTotal) * 100).toFixed(2) + "%" : "-";
+                    const porcentajeSaquesTotal = estadistica.saquesTotal ? ((estadistica.saquesPuntos / estadistica.saquesTotal) * 100).toFixed(2) + "%" : "-";
 
                     if (nombreZonaHTML.startsWith("Zona de saque")) {
 
@@ -89,7 +89,7 @@ async function cargarEstadisticas(idPartido) {
 
 async function actualizarFilaTotal(idPartido) {
     try {
-        const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${idPartido}`);
+        const totalDataResponse = await fetch(`http://localhost:8080/zonas/estadisticasTotal/${idPartido}`);
         const totalData = await totalDataResponse.json();
 
 

@@ -9,7 +9,6 @@ function getUrlParam(name) {
     return urlParams.get(name);
 }
 
-// Función para obtener datos de la API y crear el acordeón con la tabla
 async function fetchAndCreateAccordionAndTable() {
     var modalBody = document.querySelector('#statsJugModal .modal-body');
     var equipoId = getUrlParam('idEquipo');
@@ -31,7 +30,7 @@ async function fetchAndCreateAccordionAndTable() {
 
     try {
         // Llamada AJAX usando Fetch API para obtener jugadores del equipo
-        const response = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/equipos/${equipoId}/jugadores`);
+        const response = await fetch(`http://localhost:8080/equipos/${equipoId}/jugadores`);
         if (!response.ok) {
             throw new Error('Error al obtener los datos de la API');
         }
@@ -117,6 +116,7 @@ async function fetchAndCreateAccordionAndTable() {
                 var th = document.createElement('th');
                 th.setAttribute('scope', 'row');
                 th.setAttribute('data-zona', zona);
+                tr.setAttribute('data-zona', zona.toUpperCase());
                 th.textContent = zona;
                 tr.appendChild(th);
                 tr.innerHTML += `<td>-</td><td>-</td><td>-</td><td>-</td>`;
@@ -155,39 +155,32 @@ async function fetchAndCreateAccordionAndTable() {
     }
 }
 
+
 // Event listener para llamar a la función al hacer clic en el botón
 document.addEventListener('DOMContentLoaded', function () {
     var buttonStatsJugador = document.querySelector('button[data-bs-target="#statsJugModal"]');
     buttonStatsJugador.addEventListener('click', fetchAndCreateAccordionAndTable);
 });
 
-// Función para cargar estadísticas de un jugador
 async function cargarEstadisticasJugador(jugadorId, idPartido, accordionCollapse) {
     try {
-        const response = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasJugador/${jugadorId}?idPartido=${idPartido}`);
+        const response = await fetch(`http://localhost:8080/zonas/estadisticasJugador/${jugadorId}?idPartido=${idPartido}`);
         if (!response.ok) {
             throw new Error('Error al obtener las estadísticas del jugador');
         }
         const data = await response.json();
 
-        console.log(`Datos de estadísticas para jugador ${jugadorId} en partido ${idPartido}:`, data);
+        console.log("Datos recibidos de la API:", data);
 
         // Calcular el total de remates para todas las estadísticas recibidas
         const totalRemates = data.reduce((sum, estadistica) => sum + estadistica.rematesTotal, 0);
         const totalSaques = data.reduce((sum, estadistica) => sum + estadistica.saquesTotal, 0);
 
-        // Obtener el acordeón del jugador actual
-        const accordionBody = accordionCollapse.querySelector('.accordion-body');
-        if (!accordionBody) {
-            console.warn(`No se encontró el cuerpo del acordeón para el jugador ${jugadorId}`);
-            return;
-        }
-
         // Iterar sobre cada estadística recibida
         for (const estadistica of data) {
             const nombreZonaDB = estadistica.idZona.nombreZona;
-            const nombreZonaHTML = Object.keys(zonaMappingJugadores).find(
-                (key) => zonaMappingJugadores[key] === nombreZonaDB
+            const nombreZonaHTML = Object.keys(zonaMapping).find(
+                (key) => zonaMapping[key] === nombreZonaDB
             );
 
             if (!nombreZonaHTML) {
@@ -195,50 +188,57 @@ async function cargarEstadisticasJugador(jugadorId, idPartido, accordionCollapse
                 continue; // Saltar al siguiente si no se encuentra el nombre de zona correspondiente
             }
 
-            console.log(`Buscando fila para zona HTML: ${nombreZonaHTML}`);
+            const tableRows = accordionCollapse.querySelectorAll("tbody tr");
 
-            // Buscar la fila correspondiente en el acordeón
-            const row = accordionBody.querySelector(`tr th[scope='row'][data-zona="${nombreZonaHTML}"]`);
-            if (!row) {
-                console.warn(`No se encontró la fila correspondiente para ${nombreZonaHTML}`);
-                continue; // Saltar al siguiente si no se encuentra la fila correspondiente
+            // Iterar sobre cada fila de la tabla
+            for (const row of tableRows) {
+                const th = row.querySelector("th[scope='row']");
+                if (!th) continue; // Saltar al siguiente si no hay encabezado de fila
+
+                const normalizedThText = th.textContent.trim().toLowerCase();
+                const normalizedNombreZonaHTML = nombreZonaHTML.toLowerCase();
+
+                // Verificar si la zona HTML coincide con el encabezado de fila
+                if (normalizedThText === normalizedNombreZonaHTML) {
+                    // Obtener las celdas de la fila actual
+                    const cells = row.querySelectorAll("td");
+
+                    // Calcular remates fallados, bloqueados y puntos
+                    const rematesFallados = estadistica.rematesTotal - (estadistica.rematesPuntos + estadistica.rematesBloqueados);
+                    const saquesFallados = estadistica.saquesTotal - estadistica.saquesPuntos;
+                    // Calcular el porcentaje de aciertos para remates y saques
+                    const porcentajeAciertosRemates = estadistica.rematesTotal ? ((estadistica.rematesPuntos / estadistica.rematesTotal) * 100).toFixed(2) + "%" : "-";
+                    const porcentajeAciertosSaques = estadistica.saquesTotal ? ((estadistica.saquesPuntos / estadistica.saquesTotal) * 100).toFixed(2) + "%" : "-";
+
+                    if (nombreZonaHTML.startsWith("Zona de saque")) {
+                        cells[0].textContent = saquesFallados || "-";
+                        cells[1].textContent = estadistica.rematesBloqueados || "-";
+                        cells[2].textContent = estadistica.saquesPuntos || "-";
+                        cells[3].textContent = porcentajeAciertosSaques;
+                    } else {
+                        // Actualizar las celdas con los datos correspondientes
+                        cells[0].textContent = rematesFallados || "-";
+                        cells[1].textContent = estadistica.rematesBloqueados || "-";
+                        cells[2].textContent = estadistica.rematesPuntos || "-";
+                        cells[3].textContent = porcentajeAciertosRemates;
+                    }
+                }
             }
-
-            // Verificar si la fila contiene celdas
-            const cells = row.parentElement.querySelectorAll('td');
-
-            // Calcular remates fallados
-            const rematesFallados = estadistica.rematesTotal - (estadistica.rematesPuntos + estadistica.rematesBloqueados);
-            const saquesFallados = estadistica.saquesTotal - estadistica.saquesPuntos;
-            // Calcular el porcentaje de remates total
-            const porcentajeRematesTotal = totalRemates ? ((estadistica.rematesTotal / totalRemates) * 100).toFixed(2) + "%" : "-";
-            const porcentajeSaquesTotal = totalSaques ? ((estadistica.saquesTotal / totalSaques) * 100).toFixed(2) + "%" : "-";
-
-            if (nombreZonaHTML.startsWith("Zona de saque")) {
-                cells[0].textContent = saquesFallados || "-";
-                cells[1].textContent = estadistica.rematesBloqueados || "-";
-                cells[2].textContent = estadistica.saquesPuntos || "-";
-                cells[3].textContent = porcentajeSaquesTotal;
-            } else {
-                // Actualizar las celdas con los datos correspondientes
-                cells[0].textContent = rematesFallados || "-";
-                cells[1].textContent = estadistica.rematesBloqueados || "-";
-                cells[2].textContent = estadistica.rematesPuntos || "-";
-                cells[3].textContent = porcentajeRematesTotal;
-            }
-
-            // Llamar a la función para actualizar la fila "TOTAL" específica del jugador
-            actualizarFilaTotalJugador(idPartido, totalRemates, accordionCollapse);
         }
 
+        // Llamar a la función para actualizar la fila "TOTAL" específica del acordeón
+        await actualizarFilaTotalJugador(idPartido, totalRemates, accordionCollapse,jugadorId);
+
     } catch (error) {
-        console.error(`Error al cargar las estadísticas para el jugador ${jugadorId}:`, error);
+        console.error("Error al cargar las estadísticas:", error);
     }
 }
 
-async function actualizarFilaTotalJugador(idPartido, totalRemates, accordionCollapse) {
+
+
+async function actualizarFilaTotalJugador(idPartido, totalRemates, accordionCollapse,jugadorId) {
     try {
-        const totalDataResponse = await fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/zonas/estadisticasTotal/${idPartido}`);
+        const totalDataResponse = await fetch(`http://localhost:8080/zonas/estadisticasTotalJugador/${idPartido}/${jugadorId}`);
         const totalData = await totalDataResponse.json();
 
         // Obtener los datos específicos
@@ -248,7 +248,7 @@ async function actualizarFilaTotalJugador(idPartido, totalRemates, accordionColl
 
         // Calcular el porcentaje de acierto
         const totalRematesCalculado = rematesFallados + rematesBloqueados + rematesPuntos;
-        const porcentajeAcierto = totalRemates !== 0 ? ((rematesPuntos / totalRemates) * 100).toFixed(2) + "%" : "-";
+        const porcentajeAcierto = totalRematesCalculado !== 0 ? ((rematesPuntos / totalRematesCalculado) * 100).toFixed(2) + "%" : "-";
 
         // Buscar la fila de "TOTAL" dentro del acordeón específico
         const totalRow = accordionCollapse.querySelector("tbody tr[data-zona='TOTAL']");
@@ -267,11 +267,12 @@ async function actualizarFilaTotalJugador(idPartido, totalRemates, accordionColl
 }
 
 
+
 // Objeto de mapeo de nombres de zona
 const zonaMappingJugadores = {
-    "Zona de saque 1": "10",
-    "Zona de saque 5": "11",
-    "Zona de saque 6": "12",
+    "Zona de saque 1": "12",
+    "Zona de saque 5": "10",
+    "Zona de saque 6": "11",
     "Zona 1": "1",
     "Zona 2": "2",
     "Zona 3": "3",

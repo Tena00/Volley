@@ -8,7 +8,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 
     const nombreEquipo = document.getElementById('nombreEquipo').value;
 
-    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/addEquipo', {
+    fetch('http://localhost:8080/equipos/addEquipo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/todos')
+        fetch('http://localhost:8080/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function borrarEquipo(idEquipo) {
         console.log(idEquipo)
-        fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/eliminarEquipo/${idEquipo}`, {
+        fetch(`http://localhost:8080/equipos/eliminarEquipo/${idEquipo}`, {
             method: 'DELETE'
         })
             .then(response => {

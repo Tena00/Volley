@@ -1,12 +1,8 @@
-// Nuevo dominio de la API
-var apiUrl = 'https://scoutboard.alvarofs.com';
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/todos')
+        fetch('http://localhost:8080/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -28,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Llamada a la API para obtener la lista de jugadores del equipo seleccionado
     function cargarJugadores(idEquipo) {
         console.log(idEquipo);
-        fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/equipos/${idEquipo}/jugadores`)
+        fetch(`http://localhost:8080/equipos/${idEquipo}/jugadores`)
             .then(response => response.json())
             .then(jugadores => {
                 const jugadoresList = document.getElementById('jugadoresList');
@@ -75,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para borrar un jugador
     function borrarJugador(idJugador) {
-        fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/jugadores/eliminarJugador/${idJugador}`, {
+        fetch(`http://localhost:8080/jugadores/eliminarJugador/${idJugador}`, {
             method: 'DELETE'
         })
             .then(response => {
@@ -146,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Enviar solicitud POST
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/jugadores/addJugador', {
+        fetch('http://localhost:8080/jugadores/addJugador', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

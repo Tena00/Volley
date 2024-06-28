@@ -7,7 +7,7 @@ window.addEventListener('load', function() {
 
 // Función para obtener los datos de las Zonas del campo desde la API
 function obtenerZonasCampo() {
-    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/zonas')
+    fetch('http://localhost:8080/zonas')
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');
@@ -35,7 +35,7 @@ function actualizarBotonesZonasCampo(data) {
 
 // Función para obtener los datos de las Zonas del campo desde la API
 function obtenerZonasAtaque() {
-    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/zonasAtaque')
+    fetch('http://localhost:8080/zonasAtaque')
         .then(response => {
             if (!response.ok) {
                 throw new Error('La respuesta de la API no fue exitosa.');

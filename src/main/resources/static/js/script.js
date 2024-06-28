@@ -9,7 +9,7 @@ function showAddTeamView() {
 }
 
 function viewTeams() {
-    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/todos')
+    fetch('http://localhost:8080/equipos/todos')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -39,7 +39,7 @@ function viewTeams() {
 }
 
 function deleteTeam(id) {
-    fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/equipos/eliminarEquipo/${id}`, {
+    fetch(`http://localhost:8080/equipos/eliminarEquipo/${id}`, {
         method: 'DELETE'
     })
         .then(response => {

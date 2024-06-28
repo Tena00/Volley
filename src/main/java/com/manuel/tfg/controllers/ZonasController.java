@@ -45,6 +45,14 @@ public class ZonasController {
 
         return ResponseEntity.ok(estadisticasZonaList);
     }
+
+    @GetMapping("/estadisticasTotalJugador/{idPartido}/{idJugador}")
+    public ResponseEntity<int[]> obtenerEstadisticasTotalesPartidoJugador(@PathVariable("idPartido") Integer idPartido, @PathVariable("idJugador") Integer idJugador) {
+
+        int[] estadisticasZonaList = zonasCampoService.mostrarEstadisticasTotalesPartidoJugador(idPartido,idJugador);
+
+        return ResponseEntity.ok(estadisticasZonaList);
+    }
 //    @GetMapping("/estadisticas/jugador/{idPartido}/{idJugador}/{idZona}")
 //    public List<EstadisticasZona> mostrarEstadisticasZonaPartidoJugador(@PathVariable Integer idPartido,@PathVariable Integer idJugador,@PathVariable Integer idZona){
 //        return zonasCampoService.mostrarEstadisticasJugadorPartido(idPartido,idJugador,idZona);

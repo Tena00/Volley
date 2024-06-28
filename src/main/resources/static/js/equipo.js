@@ -7,7 +7,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 
     const nombreEquipo = document.getElementById('nombreEquipo').value;
 
-    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/addEquipo', {
+    fetch('http://localhost:8080/equipos/addEquipo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/todos')
+        fetch('http://localhost:8080/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const equipoSelect = document.getElementById('equipoSelect');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Llamada a la API para obtener la lista de equipos
     function cargarEquipos() {
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/equipos/todos')
+        fetch('http://localhost:8080/equipos/todos')
             .then(response => response.json())
             .then(equipos => {
                 const selectAnalizar = document.querySelector('.select_analizar');
@@ -134,7 +134,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     };
 
     // Enviar solicitud POST
-    fetch('https://scoutboard-2c1996d939fa.herokuapp.com/jugadores/addJugador', {
+    fetch('http://localhost:8080/jugadores/addJugador', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -169,7 +169,7 @@ function startGame() {
     console.log('Iniciando partido para el equipo con ID:', idEquipo);
 
     // Realizar la solicitud POST usando fetch
-    fetch(`https://scoutboard-2c1996d939fa.herokuapp.com/partidos/iniciarPartido/${idEquipo}`, {
+    fetch(`http://localhost:8080/partidos/iniciarPartido/${idEquipo}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

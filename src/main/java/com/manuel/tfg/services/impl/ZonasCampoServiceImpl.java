@@ -72,6 +72,23 @@ public class ZonasCampoServiceImpl implements ZonasCampoService {
         }
     }
 
+    @Override
+    public int[] mostrarEstadisticasTotalesPartidoJugador(Integer idPartido, Integer idJugador) {
+        List<EstadisticasZona> estadisticasZonaList = repositorioEstadisticasZona.findByEstadisticasJugadorPartido(idPartido,idJugador);
+        int[] totalesPartidoJugador = new int[4];
+        int rematesFallados = 0;
+        int saquesFallados = 0;
+        for (EstadisticasZona zona : estadisticasZonaList) {
+            rematesFallados = zona.getRematesTotal() - (zona.getRematesPuntos() + zona.getRematesBloqueados());
+            saquesFallados = zona.getSaquesTotal() - zona.getSaquesPuntos();
+            totalesPartidoJugador[0] = totalesPartidoJugador[0] + (zona.getRematesTotal() + zona.getSaquesTotal());
+            totalesPartidoJugador[1] = totalesPartidoJugador[1] + (zona.getRematesPuntos() + zona.getSaquesPuntos());
+            totalesPartidoJugador[2] = totalesPartidoJugador[2] + zona.getRematesBloqueados();
+            totalesPartidoJugador[3] = totalesPartidoJugador[3] + (rematesFallados + saquesFallados);
+        }
+        return totalesPartidoJugador;
+    }
+
 //    public List<EstadisticasZona> mostrarEstadisticasZonaPartidoJugador(Integer idPartido, Integer idJugador, Integer idZona){
 //        EstadisticasZona estadisticasZonas = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido,idZona);
 //        List<Acciones> acciones = repositorioAcciones.findByIdAccionesPartido(idPartido);

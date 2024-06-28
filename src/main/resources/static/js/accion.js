@@ -1,6 +1,3 @@
-// Nuevo dominio de la API
-var apiUrl = 'https://scoutboard.alvarofs.com';
-
 
 let resultadoAccionSeleccionado = null;
 let jugadorSeleccionado = null;
@@ -52,7 +49,7 @@ function submitAccion() {
             resultadoAccion: resultadoAccionSeleccionado
         };
 
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/accion/saque', {
+        fetch('http://localhost:8080/accion/saque', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,7 +77,7 @@ function submitAccion() {
             resultadoAccion: resultadoAccionSeleccionado
         };
 
-        fetch('https://scoutboard-2c1996d939fa.herokuapp.com/accion/remate', {
+        fetch('http://localhost:8080/accion/remate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
