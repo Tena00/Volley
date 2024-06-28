@@ -121,81 +121,97 @@
             </div>
           </div>
           <div class="jugadores_suplentes">
-            <p class="suplentes_titulo">Suplentes</p>
-            <div class="list-group jugadores_list">
-              <button
-                id="botonSuplente1"
-                type="button"
-                class="list-group-item list-group-item-action"
-                aria-current="true">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <p class="accordion-header suplentes_titulo">
+                  <button
+                    class="btn_suplentes_titulo accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne"
+                    aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    Suplentes
+                  </button>
+                </p>
+                <div
+                  id="panelsStayOpen-collapseOne"
+                  class="accordion-collapse collapse list-group jugadores_list">
+                  <button
+                    id="botonSuplente1"
+                    type="button"
+                    class="list-group-item list-group-item-action"
+                    aria-current="true">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente2"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente3"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente4"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente5"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente6"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente7"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
+                  <button
+                    id="botonSuplente8"
+                    type="button"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex gap-3">
+                      <span class="text-dark fw-bold">14</span>
+                      <p>A list item</p>
+                    </div>
+                  </button>
                 </div>
-              </button>
-              <button
-                id="botonSuplente2"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
-              <button
-                id="botonSuplente3"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
-              <button
-                id="botonSuplente4"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
-              <button
-                id="botonSuplente5"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
-              <button
-                id="botonSuplente6"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
-              <button
-                id="botonSuplente7"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
-              <button
-                id="botonSuplente8"
-                type="button"
-                class="list-group-item list-group-item-action">
-                <div class="d-flex gap-3">
-                  <span class="text-dark fw-bold">14</span>
-                  <p>A list item</p>
-                </div>
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -328,8 +344,7 @@
           <button
             class="cont_btn__3 btn_partido"
             data-bs-toggle="modal"
-            data-bs-target="#statsJugModal"
-          >
+            data-bs-target="#statsJugModal">
             Estadísticas por jugador
           </button>
           <!-- Modal -->
@@ -401,21 +416,27 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <th scope="row" data-zona="Zona de saque 1">Zona de saque 1</th>
+                                <th scope="row" data-zona="Zona de saque 1">
+                                  Zona de saque 1
+                                </th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row" data-zona="Zona de saque 5">Zona de saque 5</th>
+                                <th scope="row" data-zona="Zona de saque 5">
+                                  Zona de saque 5
+                                </th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <th scope="row" data-zona="Zona de saque 6">Zona de saque 6</th>
+                                <th scope="row" data-zona="Zona de saque 6">
+                                  Zona de saque 6
+                                </th>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
@@ -638,7 +659,9 @@
             </div>
           </div>
 
-          <button class="cont_btn__1 btn_partido" onclick="navigateTo('index.html')">
+          <button
+            class="cont_btn__1 btn_partido"
+            onclick="navigateTo('index.html')">
             Finalizar partido
           </button>
         </div>

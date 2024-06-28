@@ -27,9 +27,17 @@ body {
 /* Home */
 .sect {
   display: flex;
+  flex-direction: column;
+  gap: 3rem 0;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
+.copyright {
+  color: white;
+  font-weight: 500;
+}
+
 .cont {
   padding: 4rem;
   background-color: white;
@@ -110,7 +118,7 @@ button:hover {
 .sect_partido {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: 2rem;
   gap: 2rem;
 }
@@ -158,18 +166,19 @@ button:hover {
 /* Jugadores */
 .cont_buttons {
   display: flex;
-  flex-direction: column;
-  gap: 2rem 0;
+  gap: 0 1rem;
+  align-items: start;
 }
 
 .cont_buttons__remates {
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 16rem;
-  gap: 0 1.5rem;
+  gap: 1rem 0;
 }
 
 .remates_rojo,
@@ -218,13 +227,28 @@ button:hover {
   gap: 1rem 0;
 }
 
-.seisInicial_titulo,
-.suplentes_titulo {
+.seisInicial_titulo {
   font-weight: 700;
   font-size: 24px;
   text-transform: uppercase;
   color: white;
   margin: 0;
+}
+
+.btn_suplentes_titulo {
+  font-weight: 700;
+}
+.accordion-collapse {
+  padding: 1rem;
+  background-color: transparent;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: white;
+}
+
+.accordion-item:first-of-type > .accordion-header .accordion-button {
+  border-radius: 8px;
 }
 
 .jugadores_list {
@@ -697,10 +721,10 @@ tr > td.btn-fuera-v > .fuera_v:hover {
 /* END Jugadores */
 
 /* Canvas */
-canvas {
+/* #canvas {
   width: 1170px;
   height: 655px;
-}
+} */
 
 .select {
   user-select: none;
@@ -749,6 +773,11 @@ canvas {
 
 /* Media Queries */
 @media (max-width: 1280px) {
+  .sect {
+    flex-direction: column;
+    gap: 4rem 0;
+  }
+
   .pizarra {
     margin-top: 1rem;
   }
@@ -797,9 +826,14 @@ canvas {
   .sect_partido {
     display: grid;
     grid-template-columns: 0.5fr auto;
-    align-items: inherit;
+    align-items: flex-start;
   }
 
+  .sect_jugadores,
+  .sect_equipo {
+    max-width: 80%;
+    grid-template-columns: 30% 70%;
+  }
   .fuera {
     height: 45px !important;
   }
@@ -870,10 +904,13 @@ canvas {
     height: 100vh;
   }
 
-  canvas {
+  .cont_buttons__pizarra {
+    z-index: 100;
+  }
+  /* canvas {
     width: 760px;
     height: 477px;
-  }
+  } */
 
   .pizarra {
     margin-top: 1rem;
@@ -1092,6 +1129,9 @@ canvas {
     height: 30px;
   }
 
+  .accordion-collapse {
+    padding: 0.25rem;
+  }
   .btn-fuera-sp td {
     height: 50px !important;
   }
