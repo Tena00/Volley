@@ -31,6 +31,10 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
             alert("Error al agregar el equipo: " + error.message);
             // Aquí puedes manejar los errores de la API, por ejemplo, mostrar un mensaje de error
         });
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 });
 
 document.addEventListener('DOMContentLoaded', function() {
