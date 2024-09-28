@@ -9,8 +9,11 @@ import com.manuel.tfg.daos.model.ZonasCampo;
 import com.manuel.tfg.services.ZonasCampoService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ZonasCampoServiceImpl implements ZonasCampoService {
@@ -39,7 +42,15 @@ public class ZonasCampoServiceImpl implements ZonasCampoService {
     }
     @Override
     public List<EstadisticasZona> mostrarEstadisticasPartido(Integer idPartido) {
-        return repositorioEstadisticasZona.findByIdPartido(idPartido);
+        List<EstadisticasZona> estadisticasZonas = repositorioEstadisticasZona.findByIdPartido(idPartido);
+
+        Map<ZonasCampo, List<EstadisticasZona>> estadisticasPorIdZona = estadisticasZonas.stream()
+                .collect(Collectors.groupingBy(EstadisticasZona::getIdZona));
+
+        // Obtener solo las listas agrupadas por idZona y devolverlas
+        List<List<EstadisticasZona>> listasAgrupadas = new ArrayList<>(estadisticasPorIdZona.values());
+
+        return estadisticasZonasPartidoSuma(listasAgrupadas);
     }
     @Override
     public List<EstadisticasZona> mostrarEstadisticasPartidoJugadores(Integer idPartido, Integer idJugador) {
@@ -89,13 +100,32 @@ public class ZonasCampoServiceImpl implements ZonasCampoService {
         return totalesPartidoJugador;
     }
 
-//    public List<EstadisticasZona> mostrarEstadisticasZonaPartidoJugador(Integer idPartido, Integer idJugador, Integer idZona){
-//        EstadisticasZona estadisticasZonas = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido,idZona);
-//        List<Acciones> acciones = repositorioAcciones.findByIdAccionesPartido(idPartido);
-//        EstadisticasJugador estadisticasJugadors = repositorioEstadisticas.findByIdPartidoIdJugador(idPartido,idJugador);
-//        List<EstadisticasZona> estadisticasZonasFinal = new ArrayList<>();
-//        for(Acciones accion : acciones){
-//
-//        }
-//    }
+    private List<EstadisticasZona> estadisticasZonasPartidoSuma(List<List<EstadisticasZona>> listasAgrupadas){
+        List<EstadisticasZona> listaEstadisticasZona = new ArrayList<>();
+
+        for (List<EstadisticasZona> sublista : listasAgrupadas) {
+            // Aquí puedes manipular cada sublista
+            EstadisticasZona estadisticasZonaAux = new EstadisticasZona();
+            iniciarEstadisticasZonaAux(estadisticasZonaAux);
+            for (EstadisticasZona estadistica : sublista) {
+                estadisticasZonaAux.setIdZona(estadistica.getIdZona());
+                estadisticasZonaAux.setRematesTotal(estadisticasZonaAux.getRematesTotal() + estadistica.getRematesTotal());
+                estadisticasZonaAux.setSaquesTotal(estadisticasZonaAux.getSaquesTotal() + estadistica.getSaquesTotal());
+                estadisticasZonaAux.setRematesBloqueados(estadisticasZonaAux.getRematesBloqueados() + estadistica.getRematesBloqueados());
+                estadisticasZonaAux.setRematesPuntos(estadisticasZonaAux.getRematesPuntos() + estadistica.getRematesPuntos());
+                estadisticasZonaAux.setSaquesPuntos(estadisticasZonaAux.getSaquesPuntos() + estadistica.getSaquesPuntos());
+
+            }
+            listaEstadisticasZona.add(estadisticasZonaAux);
+        }
+        return listaEstadisticasZona;
+    }
+
+    private void iniciarEstadisticasZonaAux(EstadisticasZona estadisticasZona){
+        estadisticasZona.setRematesTotal(0);
+        estadisticasZona.setSaquesTotal(0);
+        estadisticasZona.setRematesBloqueados(0);
+        estadisticasZona.setRematesPuntos(0);
+        estadisticasZona.setSaquesPuntos(0);
+    }
 }

@@ -34,7 +34,7 @@ public class AccionesServiceImpl implements AccionesService {
 
     public void realizarAccion(Integer idPartido, Integer idJugador, Integer idZona, Integer idZonaAtaque, String resultadoAccion) {
         EstadisticasJugador estadisticasJugador = repositorioEstadisticas.findByIdPartidoIdJugador(idPartido, idJugador);
-        EstadisticasZona estadisticasZona = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido, idZona);
+        EstadisticasZona estadisticasZona = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido, idZona, idJugador);
         EstadisticasAtaque estadisticasAtaque = repositorioEstadisticasAtaque.findByIdPartidoIdZonaAtaque(idPartido, idZonaAtaque);
         Optional<Jugador> jugadorOp = repositorioJugadores.findById(idJugador);
         Jugador jugador = jugadorOp.get();
@@ -105,6 +105,12 @@ public class AccionesServiceImpl implements AccionesService {
                     rematePunto(estadisticasJugador, estadisticasZona, estadisticasAtaque);
                 }
             } else {
+                estadisticasZona = new EstadisticasZona();
+                estadisticasZona.setJugador(jugador);
+                inicializarEstadisticasZona(estadisticasZona);
+                ZonasCampo zonasCampo = zonasCampoOp.get();
+                estadisticasZona.setPartido(partido);
+                estadisticasZona.setIdZona(zonasCampo);
                 accionesPartido.setEstadisticasZona(estadisticasZona);
                 if ((resultadoAccion.equals("rojo")) || idZonaAtaque == 10 || idZonaAtaque == 11 || idZonaAtaque == 12 ) {
                     remateFallado(estadisticasJugador, estadisticasZona, estadisticasAtaque);
@@ -239,7 +245,7 @@ public class AccionesServiceImpl implements AccionesService {
 
     public void realizarSaque(Integer idPartido, Integer idJugador, Integer idZona, Integer idZonaAtaque, String resultadoAccion){
         EstadisticasJugador estadisticasJugador = repositorioEstadisticas.findByIdPartidoIdJugador(idPartido, idJugador);
-        EstadisticasZona estadisticasZona = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido, idZona);
+        EstadisticasZona estadisticasZona = repositorioEstadisticasZona.findByIdPartidoIdZona(idPartido, idZona, idJugador);
         EstadisticasAtaque estadisticasAtaque = repositorioEstadisticasAtaque.findByIdPartidoIdZonaAtaque(idPartido, idZonaAtaque);
         Optional<Jugador> jugadorOp = repositorioJugadores.findById(idJugador);
         Jugador jugador = jugadorOp.get();
